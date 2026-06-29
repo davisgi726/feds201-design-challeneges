@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Challenge #3 — Cat Toy Problem</title>
+<script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
+<style>
+:root {
+  --navy:#0D1B2A; --steel:#1B4F72; --orange:#F4831F; --orange2:#D4691A;
+  --offwhite:#F0F4F8; --card:#FFFFFF; --muted:#7A8FA6; --text:#1A2530;
+  --border:#D0DCE8; --green:#1E7D4A; --red:#C0392B; --sidebar-w:6px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:Calibri,"Segoe UI",Arial,sans-serif;background:var(--navy);color:var(--text);min-height:100vh;display:flex;flex-direction:column;}
+.site-header{background:var(--navy);padding:18px 32px 0;}
+.site-header h1{font-family:Cambria,serif;color:#fff;font-size:22px;letter-spacing:.5px;}
+.site-header .subtitle{color:var(--orange);font-size:13px;margin-top:2px;text-transform:uppercase;letter-spacing:1.5px;}
+.progress-track{display:flex;align-items:center;padding:20px 32px 22px;background:var(--navy);}
+.progress-step{display:flex;flex-direction:column;align-items:center;flex:1;position:relative;cursor:pointer;}
+.progress-step:not(:last-child)::after{content:"";position:absolute;top:16px;left:50%;width:100%;height:2px;background:var(--steel);z-index:0;transition:background .3s;}
+.progress-step.done:not(:last-child)::after{background:var(--orange);}
+.step-circle{width:32px;height:32px;border-radius:50%;border:2px solid var(--steel);background:var(--navy);color:var(--muted);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;position:relative;z-index:1;transition:all .3s;}
+.progress-step.active .step-circle{border-color:var(--orange);background:var(--orange);color:#fff;}
+.progress-step.done .step-circle{border-color:var(--orange);background:var(--steel);color:#fff;}
+.step-label{font-size:10px;color:var(--muted);margin-top:6px;text-align:center;text-transform:uppercase;letter-spacing:.8px;max-width:72px;line-height:1.3;}
+.progress-step.active .step-label{color:var(--orange);}
+.progress-step.done .step-label{color:#8BAFC8;}
+.page-outer{flex:1;background:var(--offwhite);border-radius:12px 12px 0 0;padding:0 0 60px;margin:0 16px;position:relative;overflow:hidden;}
+.page-outer::before{content:"";position:absolute;left:0;top:0;bottom:0;width:var(--sidebar-w);background:var(--orange);border-radius:12px 0 0 0;}
+.page-inner{padding:32px 40px 32px 46px;}
+.page-tag{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--orange);font-weight:700;margin-bottom:4px;}
+.page-title{font-family:Cambria,serif;font-size:28px;color:var(--navy);margin-bottom:6px;line-height:1.2;}
+.page-intro{font-size:15px;color:#4A6070;line-height:1.6;margin-bottom:28px;max-width:720px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:22px 26px;margin-bottom:18px;}
+.card-title{font-family:Cambria,serif;font-size:17px;color:var(--navy);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.card-title .icon{width:28px;height:28px;background:var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px;}
+.concept-box{background:var(--offwhite);border-left:4px solid var(--orange);border-radius:0 6px 6px 0;padding:14px 16px;}
+.concept-box h4{font-family:Cambria,serif;font-size:14px;color:var(--navy);margin-bottom:6px;}
+.concept-box p{font-size:13px;color:#4A6070;line-height:1.6;}
+.formula-box{background:var(--navy);color:#E8F0F8;border-radius:8px;padding:18px 22px;font-family:"Courier New",monospace;font-size:13px;line-height:2;margin-top:14px;}
+.formula-box .formula-label{color:var(--orange);font-size:11px;text-transform:uppercase;letter-spacing:1px;font-family:Calibri,sans-serif;display:block;margin-bottom:6px;}
+.info-box{background:#E8F4FB;border-left:4px solid var(--steel);border-radius:0 6px 6px 0;padding:12px 16px;font-size:13px;color:#1A3A50;line-height:1.6;margin-top:12px;}
+.warn-box{background:#FFF3E0;border-left:4px solid var(--orange);border-radius:0 6px 6px 0;padding:12px 16px;font-size:13px;color:#5C3000;line-height:1.6;margin-top:12px;}
+.success-box{background:#E8F8EF;border-left:4px solid var(--green);border-radius:0 6px 6px 0;padding:12px 16px;font-size:13px;color:#0D3320;line-height:1.6;margin-top:12px;}
+label{display:block;font-size:13px;font-weight:700;color:var(--navy);margin-bottom:5px;margin-top:14px;}
+label:first-child{margin-top:0;}
+.label-hint{font-weight:400;color:var(--muted);font-size:12px;margin-left:6px;}
+input[type="text"],input[type="number"],textarea,select{width:100%;border:1.5px solid var(--border);border-radius:6px;padding:9px 13px;font-family:Calibri,sans-serif;font-size:14px;color:var(--text);background:#FAFCFE;transition:border-color .2s;resize:vertical;}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--orange);}
+textarea{min-height:80px;}
+.input-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.input-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+/* SMART requirement rows */
+.req-row{background:#fff;border:1px solid var(--border);border-radius:8px;padding:16px 18px;margin-bottom:12px;position:relative;}
+.req-row.req-valid{border-left:4px solid var(--green);}
+.req-row.req-invalid{border-left:4px solid var(--red);}
+.req-num{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.smart-checks{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;}
+.smart-pill{font-size:11px;padding:3px 10px;border-radius:20px;border:1px solid var(--border);color:var(--muted);background:var(--offwhite);cursor:default;}
+.smart-pill.on{background:#E8F8EF;border-color:var(--green);color:var(--green);font-weight:700;}
+.smart-pill.off{background:#FFF0EE;border-color:#FFBBAA;color:var(--red);}
+/* Brainstorm cards */
+.concept-card{background:#fff;border:1px solid var(--border);border-radius:8px;padding:16px 18px;margin-bottom:12px;}
+.concept-card-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.concept-num-badge{width:32px;height:32px;background:var(--steel);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;}
+/* Decision matrix */
+.matrix-container{overflow-x:auto;margin-top:12px;border-radius:6px;border:1px solid var(--border);}
+#decision-matrix{width:100%;border-collapse:collapse;min-width:700px;font-size:13px;}
+#decision-matrix th{background:var(--steel);color:#fff;padding:8px 10px;text-align:center;font-size:12px;white-space:nowrap;}
+#decision-matrix th.left{text-align:left;}
+#decision-matrix td{padding:6px 8px;border-bottom:1px solid var(--border);vertical-align:middle;}
+#decision-matrix tr:nth-child(even) td{background:var(--offwhite);}
+.score-cell{text-align:center;font-weight:700;}
+.score-cell input{width:48px;text-align:center;padding:4px 6px;font-size:13px;font-weight:700;}
+.weighted-score{background:var(--navy);color:var(--orange);font-weight:700;text-align:center;font-size:14px;}
+.winner-col{background:#E8F8EF !important;}
+.winner-col td{background:#E8F8EF !important;}
+/* Rubric */
+.rubric-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.rubric-row:last-child{border-bottom:none;}
+.rubric-header{font-weight:700;color:var(--steel);font-size:11px;text-transform:uppercase;letter-spacing:1px;}
+.rubric-score-label{text-align:center;font-size:11px;color:var(--muted);font-weight:700;}
+/* Upload */
+.upload-zone{border:2px dashed var(--border);border-radius:8px;background:#FAFCFE;padding:30px;text-align:center;margin-top:12px;cursor:pointer;transition:border-color .2s;position:relative;}
+.upload-zone:hover{border-color:var(--orange);background:#FFF8F2;}
+.upload-zone input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.upload-zone .upload-icon{font-size:36px;margin-bottom:10px;}
+.upload-zone p{font-size:14px;color:var(--muted);}
+.upload-preview{max-width:100%;max-height:280px;border-radius:8px;border:2px solid var(--orange);margin-top:14px;display:none;}
+/* Nav */
+.nav-bar{display:flex;justify-content:space-between;align-items:center;padding:20px 40px 20px 46px;background:var(--offwhite);border-top:1px solid var(--border);margin-top:24px;}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 26px;border-radius:6px;font-family:Calibri,sans-serif;font-size:15px;font-weight:700;cursor:pointer;border:none;transition:all .2s;}
+.btn-primary{background:var(--orange);color:#fff;}
+.btn-primary:hover{background:var(--orange2);}
+.btn-secondary{background:transparent;color:var(--steel);border:2px solid var(--steel);}
+.btn-secondary:hover{background:var(--steel);color:#fff;}
+.btn-success{background:var(--green);color:#fff;font-size:16px;padding:13px 30px;}
+.btn-success:hover{background:#165E38;}
+.btn-add{background:var(--steel);color:#fff;border:none;border-radius:6px;padding:8px 18px;font-family:Calibri,sans-serif;font-size:13px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px;margin-top:10px;}
+.btn-add:hover{background:#154060;}
+.btn-remove{background:none;border:none;color:var(--red);cursor:pointer;font-size:16px;padding:4px 8px;float:right;}
+.hidden{display:none!important;}
+.badge{display:inline-block;background:var(--orange);color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;text-transform:uppercase;letter-spacing:.5px;vertical-align:middle;margin-left:6px;}
+.section-divider{border:none;border-top:1px solid var(--border);margin:22px 0;}
+.summary-row{display:flex;justify-content:space-between;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--border);gap:20px;font-size:14px;}
+.summary-row:last-child{border-bottom:none;}
+.summary-q{color:var(--muted);min-width:200px;}
+.summary-a{color:var(--text);font-weight:600;flex:1;text-align:right;}
+.step-list{counter-reset:steps;list-style:none;margin-top:8px;}
+.step-list li{counter-increment:steps;display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--border);}
+.step-list li:last-child{border-bottom:none;}
+.step-list li::before{content:counter(steps);min-width:28px;height:28px;background:var(--orange);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;}
+.step-list li .step-text{font-size:14px;line-height:1.7;color:#3A5060;}
+.step-list li .step-text strong{color:var(--navy);}
+.step-list li .step-text a{color:var(--orange2);text-decoration:none;}
+.process-flow{display:flex;gap:0;margin:16px 0;overflow-x:auto;}
+.process-node{flex:1;min-width:100px;display:flex;flex-direction:column;align-items:center;position:relative;}
+.process-node:not(:last-child)::after{content:"→";position:absolute;right:-12px;top:16px;font-size:18px;color:var(--muted);z-index:1;}
+.process-bubble{width:44px;height:44px;border-radius:50%;background:var(--orange);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:8px;}
+.process-label{font-size:11px;text-align:center;color:var(--navy);font-weight:700;line-height:1.3;}
+.process-sub{font-size:10px;text-align:center;color:var(--muted);margin-top:3px;line-height:1.3;}
+</style>
+</head>
+<body>
+
+<div class="site-header">
+  <div class="subtitle">FEDS 201 · Mechanical Design · Challenge #3</div>
+  <h1>The Cat Toy Problem — Engineering Design Process</h1>
+</div>
+
+<div class="progress-track">
+  <div class="progress-step active" onclick="goToPage(0)"><div class="step-circle">1</div><div class="step-label">Technical Brief</div></div>
+  <div class="progress-step" onclick="goToPage(1)"><div class="step-circle">2</div><div class="step-label">Problem Definition</div></div>
+  <div class="progress-step" onclick="goToPage(2)"><div class="step-circle">3</div><div class="step-label">SMART Requirements</div></div>
+  <div class="progress-step" onclick="goToPage(3)"><div class="step-circle">4</div><div class="step-label">Brainstorm & Matrix</div></div>
+  <div class="progress-step" onclick="goToPage(4)"><div class="step-circle">5</div><div class="step-label">Prototype CAD</div></div>
+  <div class="progress-step" onclick="goToPage(5)"><div class="step-circle">6</div><div class="step-label">Summary</div></div>
+</div>
+
+<!-- PAGE 0: TECHNICAL BRIEF -->
+<div class="page-outer" id="page-0">
+<div class="page-inner">
+  <div class="page-tag">Page 1 of 6 · Technical Content</div>
+  <h2 class="page-title">The Engineering Design Process</h2>
+  <p class="page-intro">Before you design anything, you have to understand the problem — and the problem is almost never exactly what someone first tells you. This challenge teaches you the process engineers use to go from a fuzzy complaint to a tested solution.</p>
+
+  <!-- Process flow -->
+  <div class="card">
+    <div class="card-title"><div class="icon">🗺</div> The Design Process — Six Stages</div>
+    <div class="process-flow">
+      <div class="process-node"><div class="process-bubble">🎙</div><div class="process-label">Client Interview</div><div class="process-sub">What did they say? What do they need?</div></div>
+      <div class="process-node"><div class="process-bubble">🔍</div><div class="process-label">Problem Definition</div><div class="process-sub">Root cause, constraints, measurements</div></div>
+      <div class="process-node"><div class="process-bubble">📋</div><div class="process-label">SMART Requirements</div><div class="process-sub">Testable, measurable success criteria</div></div>
+      <div class="process-node"><div class="process-bubble">💡</div><div class="process-label">Brainstorm</div><div class="process-sub">Multiple concepts, no judgment yet</div></div>
+      <div class="process-node"><div class="process-bubble">⚖️</div><div class="process-label">Decision Matrix</div><div class="process-sub">Score concepts against requirements</div></div>
+      <div class="process-node"><div class="process-bubble">🖨️</div><div class="process-label">Prototype</div><div class="process-sub">Build, test, learn</div></div>
+    </div>
+    <div class="info-box">💡 <strong>The most common engineering mistake</strong> is skipping straight from "client says X" to "I'll build Y." Every stage in this process exists because someone, somewhere, skipped it and it cost them time, money, or a failed product.</div>
+  </div>
+
+  <!-- Client Interview -->
+  <div class="card">
+    <div class="card-title"><div class="icon">🎙</div> Stage 1 — The Client Interview</div>
+    <p style="font-size:14px;line-height:1.7;color:#3A5060;">A client tells you their problem in the language of their experience, not in engineering terms. Your job is to listen carefully, ask clarifying questions, and translate what they say into something you can actually design to.</p>
+    <div class="concept-grid">
+      <div class="concept-box">
+        <h4>What the client says</h4>
+        <p>"My cat keeps losing her toys under the oven and fridge. It's really annoying and she cries at me to get them out."</p>
+      </div>
+      <div class="concept-box">
+        <h4>What an engineer hears</h4>
+        <p>There is a gap between an appliance and the floor (or adjacent surface). Small objects pass through this gap and become inaccessible. The client wants this to stop.</p>
+      </div>
+    </div>
+    <div class="warn-box" style="margin-top:14px;">
+      ⚠️ <strong>Stated problem vs. root cause.</strong> The client said "cat keeps losing toys." That's a symptom. The root cause is a physical gap that allows objects below a certain size to pass through. You could solve the stated problem by removing all toys — but that doesn't address the root cause. Always design to the root cause.
+    </div>
+    <h3 style="font-family:Cambria,serif;font-size:15px;color:var(--navy);margin-top:18px;margin-bottom:10px;">Clarifying Questions — What To Ask</h3>
+    <p style="font-size:14px;line-height:1.7;color:#3A5060;">After the first statement, a good engineer asks questions that reveal dimensions, constraints, and priorities. For this problem:</p>
+    <div class="formula-box">
+      <span class="formula-label">Good Clarifying Questions</span>
+      How wide is the gap between the oven/fridge and the floor?<br>
+      How wide is the gap between the oven/fridge and the adjacent cabinet?<br>
+      What size are the toys that fall through? (measure the smallest one)<br>
+      Does the solution need to be removable? (e.g. for cleaning)<br>
+      Is the oven freestanding or built-in? Does it need to slide out?<br>
+      What materials are acceptable? (adhesive OK? drilling OK?)<br>
+      Is aesthetics a concern — does it need to match the kitchen?<br>
+      What is the budget?
+    </div>
+    <div class="info-box" style="margin-top:12px;">📌 Notice that none of these questions mention a solution. You are gathering information about the problem space, not proposing answers. The moment you mention a solution in the client interview, you've anchored the conversation and you'll miss requirements.</div>
+  </div>
+
+  <!-- SMART Requirements -->
+  <div class="card">
+    <div class="card-title"><div class="icon">📋</div> Stage 2 — SMART Requirements</div>
+    <p style="font-size:14px;line-height:1.7;color:#3A5060;">A requirement is a statement of what the design must do — not how it does it. "The design must block toys" is not a requirement. It's a wish. A SMART requirement is testable: you can look at the final design and definitively say pass or fail.</p>
+    <table style="width:100%;border-collapse:collapse;margin-top:14px;font-size:13px;">
+      <tr><th style="background:var(--steel);color:#fff;padding:8px 12px;text-align:left;">Letter</th><th style="background:var(--steel);color:#fff;padding:8px 12px;text-align:left;">Meaning</th><th style="background:var(--steel);color:#fff;padding:8px 12px;text-align:left;">Bad Example</th><th style="background:var(--steel);color:#fff;padding:8px 12px;text-align:left;">Good Example</th></tr>
+      <tr><td style="padding:8px 12px;border-bottom:1px solid var(--border);font-weight:700;color:var(--orange);">S</td><td style="padding:8px 12px;border-bottom:1px solid var(--border);">Specific</td><td style="padding:8px 12px;border-bottom:1px solid var(--border);color:var(--red);">"Should stop toys going under"</td><td style="padding:8px 12px;border-bottom:1px solid var(--border);color:var(--green);">"Shall prevent objects ≥ 38mm diameter from passing through the gap"</td></tr>
+      <tr><td style="padding:8px 12px;border-bottom:1px solid var(--border);font-weight:700;color:var(--orange);">M</td><td style="padding:8px 12px;border-bottom:1px solid var(--border);">Measurable</td><td style="padding:8px 12px;border-bottom:1px solid var(--border);color:var(--red);">"Should be cheap"</td><td style="padding:8px 12px;border-bottom:1px solid var(--border);color:var(--green);">"Total material cost shall not exceed $5.00"</td></tr>
+      <tr><td style="padding:8px 12px;border-bottom:1px solid var(--border);font-weight:700;color:var(--orange);">A</td><td style="padding:8px 12px;border-bottom:1px solid var(--border);">Achievable</td><td style="padding:8px 12px;border-bottom:1px solid var(--border);color:var(--red);">"Shall be invisible"</td><td style="padding:8px 12px;border-bottom:1px solid var(--border);color:var(--green);">"Shall be less than 10mm tall above the floor surface"</td></tr>
+      <tr><td style="padding:8px 12px;border-bottom:1px solid var(--border);font-weight:700;color:var(--orange);">R</td><td style="padding:8px 12px;border-bottom:1px solid var(--border);">Relevant</td><td style="padding:8px 12px;border-bottom:1px solid var(--border);color:var(--red);">"Shall be waterproof to 30m"</td><td style="padding:8px 12px;border-bottom:1px solid var(--border);color:var(--green);">"Shall be cleanable with a damp cloth"</td></tr>
+      <tr><td style="padding:8px 12px;font-weight:700;color:var(--orange);">T</td><td style="padding:8px 12px;">Time-bound</td><td style="padding:8px 12px;color:var(--red);">"Should be done eventually"</td><td style="padding:8px 12px;color:var(--green);">"Shall be installable in under 10 minutes without tools"</td></tr>
+    </table>
+    <div class="success-box" style="margin-top:14px;">🔑 <strong>The test:</strong> Can you look at your finished design and say definitively "pass" or "fail" for this requirement? If not, rewrite it until you can.</div>
+  </div>
+
+  <!-- Decision Matrix -->
+  <div class="card">
+    <div class="card-title"><div class="icon">⚖️</div> Stage 3 — The Weighted Decision Matrix</div>
+    <p style="font-size:14px;line-height:1.7;color:#3A5060;">A decision matrix is a structured way to compare multiple concepts against the same criteria. It prevents you from picking your favorite idea and then reverse-engineering reasons why it's best.</p>
+    <div class="concept-grid">
+      <div class="concept-box">
+        <h4>Criteria come from requirements</h4>
+        <p>Each evaluation criterion maps directly to a requirement. If it's not in your requirements, it shouldn't be in your matrix — and if it's in your matrix, it should be in your requirements.</p>
+      </div>
+      <div class="concept-box">
+        <h4>Weights reflect priority</h4>
+        <p>Not all requirements are equal. A safety requirement might be weight 5. An aesthetic preference might be weight 1. Weights force you to decide what matters most before you score anything.</p>
+      </div>
+    </div>
+    <div class="formula-box" style="margin-top:14px;">
+      <span class="formula-label">How the Matrix Works</span>
+      Weighted Score = Score × Weight  (for each criterion)<br>
+      Total Score = Sum of all Weighted Scores  (for each concept)<br><br>
+      Score range: 1 (worst) to 5 (best)<br>
+      Weight range: 1 (nice to have) to 5 (critical / must-have)<br><br>
+      Highest total score = recommended concept<br>
+      BUT: if the winner scores 1 on a weight-5 criterion, reconsider.
+    </div>
+    <h3 style="font-family:Cambria,serif;font-size:15px;color:var(--navy);margin-top:18px;margin-bottom:8px;">Defining Your Scoring Rubric — Before You Score Anything</h3>
+    <p style="font-size:14px;line-height:1.7;color:#3A5060;">The most important step in a decision matrix is defining what each score means for each criterion <em>before</em> you look at any concept. If cost is a criterion, what does a 1 mean? What does a 5 mean? Write this down first. Otherwise you'll unconsciously score your preferred concept higher.</p>
+    <div class="formula-box">
+      <span class="formula-label">Example Scoring Rubric — Cost Criterion</span>
+      Score 1:  Total cost &gt; $15<br>
+      Score 2:  Total cost $10–$15<br>
+      Score 3:  Total cost $5–$10<br>
+      Score 4:  Total cost $2–$5<br>
+      Score 5:  Total cost &lt; $2<br><br>
+      <span style="color:var(--muted);font-size:12px;">Now when you score a concept, you look up what it costs, find that row, and that's the score. No judgment. No bias.</span>
+    </div>
+    <div class="warn-box" style="margin-top:12px;">⚠️ <strong>The matrix doesn't make the decision for you.</strong> It informs the decision. If the matrix picks Concept B but you have a strong engineering reason to prefer Concept A, document that reason. But you have to be honest about whether it's an engineering reason or just preference.</div>
+  </div>
+
+  <!-- Prototyping -->
+  <div class="card">
+    <div class="card-title"><div class="icon">🖨️</div> Stage 4 — Prototyping & What You Learn</div>
+    <p style="font-size:14px;line-height:1.7;color:#3A5060;">A prototype is not a finished product. It is a physical question: <em>"Does this concept work the way I think it does?"</em> The goal is to answer that question as cheaply and quickly as possible. FDM 3D printing is ideal for this — fast, cheap, iteratable.</p>
+    <div class="concept-grid">
+      <div class="concept-box">
+        <h4>What a prototype tests</h4>
+        <p>Fit: does it fit the gap? Function: does it actually stop toys? Assembly: can you install it without tools? These are things your matrix estimated — the prototype gives you real data.</p>
+      </div>
+      <div class="concept-box">
+        <h4>What you learn from failure</h4>
+        <p>A prototype that fails is not a waste. It tells you which requirement your estimate was wrong about. That goes back into your matrix rubric and potentially changes the winning concept.</p>
+      </div>
+    </div>
+    <div class="success-box" style="margin-top:14px;">🔑 <strong>The loop:</strong> Prototype → Test against requirements → Update rubric scores with real data → Does the matrix winner change? → If yes, iterate. This is why requirements and the matrix exist: they give you a framework to learn from prototyping, not just a one-time decision tool.</div>
+  </div>
+
+</div>
+<div class="nav-bar"><div></div><button class="btn btn-primary" onclick="goToPage(1)">Next: Problem Definition →</button></div>
+</div>
+
+<!-- PAGE 1: PROBLEM DEFINITION -->
+<div class="page-outer hidden" id="page-1">
+<div class="page-inner">
+  <div class="page-tag">Page 2 of 6 · Problem Definition</div>
+  <h2 class="page-title">Understand the Problem Before Solving It</h2>
+  <p class="page-intro">Do not write a single requirement yet. This page is about understanding the problem completely. Every field here feeds into your requirements on the next page.</p>
+
+  <div class="card">
+    <div class="card-title"><div class="icon">👤</div> Student Information</div>
+    <div class="input-row">
+      <div><label for="r_name">Full Name</label><input type="text" id="r_name" placeholder="First Last" oninput="save('r_name',this.value)"></div>
+      <div><label for="r_date">Date</label><input type="text" id="r_date" oninput="save('r_date',this.value)"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><div class="icon">🎙</div> Client Interview — What She Said</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Record the client's exact words. Do not interpret or edit yet. Capture what was said, then identify what engineering information is buried in it.</p>
+    <label for="p_client_said">Client's exact statement (in quotes)</label>
+    <textarea id="p_client_said" rows="3" placeholder='"My cat keeps losing her toys under the oven and fridge. It drives me crazy — she cries at me to get them out and I have to use a broom handle."' oninput="save('p_client_said',this.value)"></textarea>
+    <label for="p_client_needs" style="margin-top:14px;">What does she actually need? <span class="label-hint">translate into engineering language — what is the physical problem?</span></label>
+    <textarea id="p_client_needs" rows="3" placeholder="A physical gap exists between appliance(s) and the adjacent floor/surface. Objects smaller than the gap width can pass through and become inaccessible. The gap needs to be blocked or the object retrieval path needs to be eliminated." oninput="save('p_client_needs',this.value)"></textarea>
+    <label for="p_root_cause" style="margin-top:14px;">Root cause statement <span class="label-hint">"The problem occurs because…"</span></label>
+    <textarea id="p_root_cause" rows="2" placeholder="The problem occurs because there is an unobstructed gap between the base of the appliance and the surrounding floor/cabinetry that is large enough to pass cat toys but too deep to reach by hand." oninput="save('p_root_cause',this.value)"></textarea>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><div class="icon">📏</div> Research & Measurements</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Good design starts with real numbers. Research or measure each field below. These become the boundary conditions for your requirements.</p>
+    <div class="input-row">
+      <div><label for="p_gap_w">Gap width — oven side (inches or mm)</label><input type="text" id="p_gap_w" placeholder='e.g. 0.75" / 19mm' oninput="save('p_gap_w',this.value)"></div>
+      <div><label for="p_gap_h">Gap height — floor to underside of appliance</label><input type="text" id="p_gap_h" placeholder='e.g. 3.5" / 89mm' oninput="save('p_gap_h',this.value)"></div>
+    </div>
+    <div class="input-row" style="margin-top:14px;">
+      <div><label for="p_toy_size">Smallest toy diameter / dimension that must be stopped</label><input type="text" id="p_toy_size" placeholder='e.g. 1.5" / 38mm jingle ball' oninput="save('p_toy_size',this.value)"></div>
+      <div><label for="p_appliance_type">Appliance type(s) to address</label><select id="p_appliance_type" onchange="save('p_appliance_type',this.value)">
+        <option value="">Select…</option>
+        <option>Freestanding oven only</option>
+        <option>Refrigerator only</option>
+        <option>Both oven and refrigerator</option>
+        <option>Other built-in appliance</option>
+      </select></div>
+    </div>
+    <div class="input-row" style="margin-top:14px;">
+      <div><label for="p_removable">Does the solution need to be removable? <span class="label-hint">e.g. oven slides out for cleaning</span></label><select id="p_removable" onchange="save('p_removable',this.value)">
+        <option value="">Select…</option>
+        <option>Yes — must be fully removable</option>
+        <option>Yes — must flex or hinge out of the way</option>
+        <option>No — permanent installation is OK</option>
+        <option>Unknown — needs clarification</option>
+      </select></div>
+      <div><label for="p_budget">Client's stated budget</label><input type="text" id="p_budget" placeholder='e.g. "under $10", "as cheap as possible"' oninput="save('p_budget',this.value)"></div>
+    </div>
+    <label for="p_existing" style="margin-top:14px;">Existing solutions researched <span class="label-hint">search Amazon, Google — what already exists? Why didn't client use it?</span></label>
+    <textarea id="p_existing" rows="3" placeholder='e.g. "Silicone oven gap covers" exist on Amazon for ~$8. They press-fit between oven and counter. Limitation: only covers top gap, not front gap. Client may not know these exist — worth suggesting.' oninput="save('p_existing',this.value)"></textarea>
+    <label for="p_constraints" style="margin-top:14px;">Hard constraints <span class="label-hint">things the solution absolutely cannot do</span></label>
+    <textarea id="p_constraints" rows="2" placeholder="Cannot permanently modify the appliance. Cannot block the oven ventilation. Must be safe for cat contact (no sharp edges, no toxic materials)." oninput="save('p_constraints',this.value)"></textarea>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><div class="icon">❓</div> Questions You Still Need Answered</div>
+    <label for="p_open_questions">What information do you still need from the client before writing requirements?</label>
+    <textarea id="p_open_questions" rows="3" placeholder="1. Does she want it to match the appliance color? 2. Does the oven need to slide out regularly? 3. Are there pets or children who might pull it off? 4. Is there a gap on both sides of the oven or only one?" oninput="save('p_open_questions',this.value)"></textarea>
+  </div>
+
+</div>
+<div class="nav-bar">
+  <button class="btn btn-secondary" onclick="goToPage(0)">← Back</button>
+  <button class="btn btn-primary" onclick="goToPage(2)">Next: SMART Requirements →</button>
+</div>
+</div>
+
+<!-- PAGE 2: SMART REQUIREMENTS -->
+<div class="page-outer hidden" id="page-2">
+<div class="page-inner">
+  <div class="page-tag">Page 3 of 6 · SMART Requirements</div>
+  <h2 class="page-title">Write Requirements, Not Wishes</h2>
+  <p class="page-intro">Each requirement you write here will become a criterion in your decision matrix. Write at least 5. Every requirement must pass the SMART test — the checker below will flag vague requirements automatically.</p>
+
+  <div class="card">
+    <div class="card-title"><div class="icon">📋</div> SMART Requirements</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:4px;">Start each requirement with "The design shall…" and include a measurable threshold. The SMART checker flags which letters need work.</p>
+    <div class="info-box" style="margin-bottom:14px;">💡 <strong>Tip:</strong> Go back to your measurements on the previous page. Your gap width, toy size, and budget are all measurable thresholds waiting to become requirements.</div>
+    <div id="reqs_container"></div>
+    <button class="btn-add" onclick="addReq()">+ Add Requirement</button>
+    <div id="req_count_display" style="margin-top:12px;font-size:13px;color:var(--muted);"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><div class="icon">⚖️</div> Select Your Decision Matrix Criteria</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Check which requirements will become evaluation criteria in your decision matrix. You should select at least 4. Requirements you don't select are still valid — they just won't be scored (but every concept must still meet them).</p>
+    <div id="criteria_selector" style="font-size:13px;color:var(--muted);">Add requirements above first, then select which ones to use as criteria.</div>
+  </div>
+
+</div>
+<div class="nav-bar">
+  <button class="btn btn-secondary" onclick="goToPage(1)">← Back</button>
+  <button class="btn btn-primary" onclick="goToPage(3);buildMatrix()">Next: Brainstorm & Matrix →</button>
+</div>
+</div>
+
+<!-- PAGE 3: BRAINSTORM + MATRIX -->
+<div class="page-outer hidden" id="page-3">
+<div class="page-inner">
+  <div class="page-tag">Page 4 of 6 · Brainstorm & Decision Matrix</div>
+  <h2 class="page-title">Generate Ideas, Then Choose Rigorously</h2>
+  <p class="page-intro">Brainstorm at least 4 concepts before opening the matrix. The rule: no judgment during brainstorming. Every idea gets written down. Then the matrix does the evaluation.</p>
+
+  <!-- Brainstorm -->
+  <div class="card">
+    <div class="card-title"><div class="icon">💡</div> Concept Brainstorm</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">For each concept: give it a name, one sentence on how it works, and note the primary material/method. Do not score or compare yet.</p>
+    <div id="concepts_container"></div>
+    <button class="btn-add" onclick="addConcept()">+ Add Concept</button>
+  </div>
+
+  <!-- Scoring Rubric -->
+  <div class="card">
+    <div class="card-title"><div class="icon">📏</div> Scoring Rubric — Define Before You Score</div>
+    <p style="font-size:14px;line-height:1.7;color:#3A5060;margin-bottom:14px;">For each criterion, define what a score of 1, 3, and 5 means in concrete, measurable terms. Do this <strong>before</strong> looking at your concepts. This prevents bias.</p>
+    <div id="rubric_container">
+      <div class="rubric-row rubric-header">
+        <div>Criterion (from requirements)</div>
+        <div class="rubric-score-label">Score 1<br><span style="color:var(--red);">Worst</span></div>
+        <div class="rubric-score-label">Score 3<br><span style="color:var(--orange);">Acceptable</span></div>
+        <div class="rubric-score-label">Score 5<br><span style="color:var(--green);">Best</span></div>
+        <div class="rubric-score-label">Weight<br>(1–5)</div>
+      </div>
+    </div>
+    <div class="warn-box" style="margin-top:12px;">⚠️ If you can't define what a 5 looks like before scoring, your criterion is not specific enough. Go back and rewrite that requirement.</div>
+  </div>
+
+  <!-- Decision Matrix -->
+  <div class="card">
+    <div class="card-title"><div class="icon">⚖️</div> Weighted Decision Matrix</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Now score each concept against each criterion using your rubric above. Look up the rubric row, find the description that matches your concept, and enter that score. The weighted totals calculate automatically.</p>
+    <div class="matrix-container">
+      <table id="decision-matrix">
+        <thead id="matrix-head"></thead>
+        <tbody id="matrix-body"></tbody>
+        <tfoot id="matrix-foot"></tfoot>
+      </table>
+    </div>
+    <div id="matrix_winner" style="margin-top:14px;"></div>
+  </div>
+
+  <!-- Matrix reflection -->
+  <div class="card">
+    <div class="card-title"><div class="icon">🎯</div> Decision & Justification</div>
+    <label for="b_winner">Which concept does your matrix select?</label>
+    <input type="text" id="b_winner" placeholder="e.g. Concept 2 — Magnetic retrieval wand" oninput="save('b_winner',this.value)">
+    <label for="b_agree" style="margin-top:14px;">Do you agree with the matrix result? Why or why not?</label>
+    <textarea id="b_agree" rows="3" placeholder="e.g. Yes — the gap cover strip scored highest because it directly addresses the root cause (blocking the gap) and is the cheapest option. Concept 3 (toy redesign) scored poorly on effectiveness because it doesn't stop the problem for toys the cat already has." oninput="save('b_agree',this.value)"></textarea>
+    <label for="b_what_if" style="margin-top:14px;">What would change the matrix result? <span class="label-hint">what score on what criterion would flip the winner?</span></label>
+    <textarea id="b_what_if" rows="2" placeholder="e.g. If the installation ease score for Concept 1 dropped to 2 (because it requires removing the oven), Concept 2 would become the winner by 3 points." oninput="save('b_what_if',this.value)"></textarea>
+  </div>
+
+</div>
+<div class="nav-bar">
+  <button class="btn btn-secondary" onclick="goToPage(2)">← Back</button>
+  <button class="btn btn-primary" onclick="goToPage(4)">Next: Prototype CAD →</button>
+</div>
+</div>
+
+<!-- PAGE 4: PROTOTYPE CAD -->
+<div class="page-outer hidden" id="page-4">
+<div class="page-inner">
+  <div class="page-tag">Page 5 of 6 · Prototype CAD</div>
+  <h2 class="page-title">Model Your Selected Concept</h2>
+  <p class="page-intro">Build a prototype model of your winning concept in Onshape. The goal is not a finished product — it's a physical test of your key assumptions. What does the prototype need to prove?</p>
+
+  <div class="card">
+    <div class="card-title"><div class="icon">🎯</div> What Your Prototype Must Test</div>
+    <label for="c_what_to_test">Based on your requirements and matrix, what are the 2–3 most critical things your prototype must demonstrate?</label>
+    <textarea id="c_what_to_test" rows="3" placeholder="1. Does it physically fit the measured gap width without a gap the toy could pass through? 2. Can it be installed without tools in under 10 minutes? 3. Is it rigid enough that a cat pawing at it can't push it aside?" oninput="save('c_what_to_test',this.value)"></textarea>
+    <label for="c_simplifications" style="margin-top:14px;">What can you simplify or omit in the prototype? <span class="label-hint">prototype only what you need to test</span></label>
+    <textarea id="c_simplifications" rows="2" placeholder="e.g. Skip the final color/finish — print in whatever filament is loaded. Skip the logo — just test the fit. Print one 100mm section rather than the full length." oninput="save('c_simplifications',this.value)"></textarea>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><div class="icon">1</div> Step 1 — Set Up Your Document</div>
+    <ol class="step-list">
+      <li><div class="step-text">Create a new Onshape document. Name it: <strong>FEDS201_[LastName]_CatToyPrototype</strong></div></li>
+      <li><div class="step-text">Set units to match your measurements — <strong>Inches</strong> if you measured in inches, <strong>mm</strong> if you measured in mm.</div></li>
+      <li><div class="step-text">Write your key measurements as a comment at the top of your first sketch so they're always visible: gap width, appliance height, toy minimum diameter. <a href="https://learn.onshape.com/learn/course/fundamentals-part-studios" target="_blank">Part Studios reference →</a></div></li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><div class="icon">2</div> Step 2 — Model the Gap (Reference Geometry)</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:10px;">Just like the tennis ball challenge — model the thing you're designing FOR before you design the solution. This ensures your part is sized correctly.</p>
+    <ol class="step-list">
+      <li><div class="step-text">Sketch a rectangle representing the appliance footprint on the Top plane. Extrude it to the appliance height. Set appearance to gray, transparency to 70%. This is your reference appliance.</div></li>
+      <li><div class="step-text">Add a second extrusion representing the floor section adjacent to the appliance. The gap between them should match your measured gap width.</div></li>
+      <li><div class="step-text">Rename parts: <em>"Appliance (Reference)"</em> and <em>"Floor (Reference)"</em>. These are visual guides only — you'll suppress them for export.</div></li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><div class="icon">3</div> Step 3 — Model Your Solution</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:10px;">The geometry depends on your chosen concept. Use the guidance below for the most common solution types.</p>
+    <ol class="step-list">
+      <li><div class="step-text"><strong>Gap cover / barrier strip:</strong> Sketch a profile on the Front plane. The width should equal your gap width plus overlap onto each surface (typically 10–15mm each side). Extrude to a depth that provides stability. Add a slight taper or chamfer on the leading edge so it guides rather than catches. <a href="https://learn.onshape.com/learn/course/fundamentals-part-studios" target="_blank">Extrude tutorial →</a></div></li>
+      <li><div class="step-text"><strong>Brush seal / flexible barrier:</strong> Model the rigid mounting channel. The brush element itself can be represented as a solid fin for the prototype — you'll specify the material in your report. Focus on modeling the channel geometry accurately so you can test the fit.</div></li>
+      <li><div class="step-text"><strong>Retrieval tool / wand:</strong> Model the handle and the retrieval tip (hook, magnet housing, or scoop). The tip geometry is what you're testing — make it long enough to reach under the appliance at your measured clearance height.</div></li>
+      <li><div class="step-text"><strong>Raised leg / foot pad:</strong> If raising the appliance to make the gap accessible, model one foot pad. It must support the appliance weight — add thickness accordingly. Check that your raised height doesn't cause instability.</div></li>
+      <li><div class="step-text"><strong>Any concept:</strong> Once modeled, visually verify it fits against your reference geometry. Does it span the gap? Does it clear the appliance? Is it small enough to print on your bed?</div></li>
+    </ol>
+    <div class="warn-box" style="margin-top:12px;">⚠️ <strong>Size check:</strong> Keep your prototype under 150mm in any dimension so it fits on any school printer. If your full solution needs to be longer, print a representative 100mm section — enough to test fit and function.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><div class="icon">4</div> Step 4 — Export & Test Plan</div>
+    <ol class="step-list">
+      <li><div class="step-text">Right-click your solution part → <strong>Export → STL → Fine resolution → Inch or mm</strong>. Suppress reference geometry first.</div></li>
+      <li><div class="step-text">Open in your slicer. Orient for best print results — no supports if possible.</div></li>
+      <li><div class="step-text">Before printing, write your test plan below. What exactly will you do with the prototype once it's printed?</div></li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><div class="icon">🧪</div> Test Plan & Expected Results</div>
+    <label for="c_test_plan">How will you test each of the critical things you identified above?</label>
+    <textarea id="c_test_plan" rows="4" placeholder="Test 1 — Fit: Place prototype in gap. Pass if no gap larger than 30mm remains on either side. Fail if toy can still pass through.&#10;Test 2 — Installation: Time how long it takes to install. Pass if under 10 minutes with no tools.&#10;Test 3 — Cat resistance: Push on barrier with 5 lbs of force. Pass if it stays in place." oninput="save('c_test_plan',this.value)"></textarea>
+    <label for="c_expected" style="margin-top:14px;">What do you expect to learn from the prototype that you couldn't predict from the matrix?</label>
+    <textarea id="c_expected" rows="2" placeholder="e.g. I expect to find that the fit isn't perfect on the oven side because the oven base isn't flat — I modeled it as a rectangle but the real oven may have a lip or recess." oninput="save('c_expected',this.value)"></textarea>
+  </div>
+
+  <!-- Upload -->
+  <div class="card">
+    <div class="card-title"><div class="icon">📸</div> Upload Your CAD Screenshot</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:6px;">Screenshot showing your prototype model against the reference geometry in Onshape. 3/4 isometric view showing the gap relationship.</p>
+    <div class="upload-zone">
+      <input type="file" id="cadImageInput" accept="image/*" onchange="handleImageUpload(this)">
+      <div class="upload-icon">🖼️</div>
+      <p><strong>Click to upload</strong> your CAD screenshot</p>
+    </div>
+    <img id="uploadPreview" class="upload-preview" alt="CAD screenshot">
+    <p id="uploadFileName" style="font-size:12px;color:var(--muted);margin-top:8px;display:none;"></p>
+    <label for="c_onshape_link" style="margin-top:18px;">Onshape Document Link</label>
+    <input type="text" id="c_onshape_link" placeholder="https://cad.onshape.com/documents/..." oninput="save('c_onshape_link',this.value)">
+    <label for="c_cad_notes" style="margin-top:14px;">CAD Notes — anything that changed from your plan once modeling</label>
+    <textarea id="c_cad_notes" rows="2" oninput="save('c_cad_notes',this.value)"></textarea>
+  </div>
+
+</div>
+<div class="nav-bar">
+  <button class="btn btn-secondary" onclick="goToPage(3)">← Back</button>
+  <button class="btn btn-primary" onclick="goToPage(5)">Next: Summary →</button>
+</div>
+</div>
+
+<!-- PAGE 5: SUMMARY -->
+<div class="page-outer hidden" id="page-5">
+<div class="page-inner">
+  <div class="page-tag">Page 6 of 6 · Summary & Report</div>
+  <h2 class="page-title">Review Your Work</h2>
+  <p class="page-intro">Review your entries, then generate your report.</p>
+  <div class="card"><div class="card-title"><div class="icon">🔍</div> Problem Definition</div><div id="summary-problem"></div></div>
+  <div class="card"><div class="card-title"><div class="icon">📋</div> Requirements & Criteria</div><div id="summary-reqs"></div></div>
+  <div class="card"><div class="card-title"><div class="icon">⚖️</div> Decision</div><div id="summary-decision"></div></div>
+  <div class="card"><div class="card-title"><div class="icon">🖥️</div> Prototype</div><div id="summary-cad"></div></div>
+  <div class="card">
+    <div class="card-title"><div class="icon">🎯</div> Final Reflection</div>
+    <label for="s_process">What part of the design process surprised you most — and why?</label>
+    <textarea id="s_process" rows="3" placeholder="e.g. I was surprised how much the client interview changed my understanding. I assumed the solution was a gap cover, but when I actually measured the gap I found it was only 12mm wide — which means most commercial solutions wouldn't even fit." oninput="save('s_process',this.value)"></textarea>
+    <label for="s_matrix" style="margin-top:14px;">Did the decision matrix pick the concept you expected going in? What does that tell you?</label>
+    <textarea id="s_matrix" rows="2" placeholder="e.g. No — I expected Concept 1 to win but Concept 3 scored higher once I defined the rubric honestly. It tells me I had a bias toward the first idea I thought of." oninput="save('s_matrix',this.value)"></textarea>
+    <label for="s_frc" style="margin-top:14px;">How does this process connect to how FRC teams should select mechanisms?</label>
+    <textarea id="s_frc" rows="2" placeholder="e.g. FRC teams often pick mechanisms based on what they built before or what looks cool. A decision matrix forces you to define what 'good' means for this year's game before you get attached to a design." oninput="save('s_frc',this.value)"></textarea>
+  </div>
+  <div style="text-align:center;margin-top:28px;">
+    <button class="btn btn-success" onclick="generateReport()">⬇ Generate Report (.pptx)</button>
+  </div>
+</div>
+<div class="nav-bar"><button class="btn btn-secondary" onclick="goToPage(4)">← Back to CAD</button><div></div></div>
+</div>
+
+<script>
+const STORE = "feds_challenge3_";
+let currentPage = 0;
+let cadImageDataURL = null;
+let reqs = [];       // [{text, smart:{S,M,A,R,T}, useCriterion, weight, rubric1, rubric3, rubric5}]
+let concepts = [];   // [{name, desc, material}]
+let scores = {};     // scores[conceptIdx][reqIdx] = number
+
+function save(k,v){localStorage.setItem(STORE+k,v);}
+function load(k,def=""){return localStorage.getItem(STORE+k)||def;}
+
+// ── NAVIGATION ──────────────────────────────────
+function goToPage(n){
+  document.getElementById("page-"+currentPage).classList.add("hidden");
+  currentPage=n;
+  document.getElementById("page-"+currentPage).classList.remove("hidden");
+  updateProgress();
+  if(n===5) buildSummary();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function updateProgress(){
+  document.querySelectorAll(".progress-step").forEach((el,i)=>{
+    el.classList.remove("active","done");
+    if(i<currentPage) el.classList.add("done");
+    else if(i===currentPage) el.classList.add("active");
+  });
+}
+
+// ── REQUIREMENTS ────────────────────────────────
+const SMART_HINTS = {
+  S:["specific","shall","the design","prevent","block","minimum","maximum","diameter","width","height","distance","gap","mm","inch","cm"],
+  M:["mm","inch","cm","%","$","minutes","seconds","hours","pounds","lbs","kg","newton","force","kg","≤","≥","<",">","0","1","2","3","4","5","6","7","8","9"],
+  A:["shall","achievable","realistic","possible"],
+  R:["cat","toy","gap","oven","fridge","appliance","floor","install","remove","clean","kitchen","safe"],
+  T:["minute","second","hour","install","time","within","before","after","once","per","daily","weekly"]
+};
+
+function checkSMART(text){
+  const t = text.toLowerCase();
+  const result = {};
+  result.S = SMART_HINTS.S.some(w=>t.includes(w)) && text.length > 20;
+  result.M = SMART_HINTS.M.some(w=>t.includes(w));
+  result.A = text.length > 15 && !t.includes("invisible") && !t.includes("perfect") && !t.includes("never");
+  result.R = SMART_HINTS.R.some(w=>t.includes(w));
+  result.T = SMART_HINTS.T.some(w=>t.includes(w)) || result.S;
+  return result;
+}
+
+function addReq(){
+  reqs.push({text:"",smart:{S:false,M:false,A:false,R:false,T:false},useCriterion:false,weight:3,rubric1:"",rubric3:"",rubric5:""});
+  renderReqs();
+  saveReqs();
+}
+
+function renderReqs(){
+  const container = document.getElementById("reqs_container");
+  if(!container) return;
+  container.innerHTML = "";
+  reqs.forEach((req,i)=>{
+    const smart = checkSMART(req.text);
+    const allPass = Object.values(smart).every(Boolean);
+    const div = document.createElement("div");
+    div.className = "req-row " + (req.text.length>10 ? (allPass?"req-valid":"req-invalid") : "");
+    div.innerHTML = `
+      <div class="req-num">Requirement ${i+1} <button class="btn-remove" onclick="removeReq(${i})">✕</button></div>
+      <textarea placeholder='The design shall prevent objects with a diameter greater than 38mm from passing through the gap between the appliance and the floor.' rows="2"
+        style="margin-bottom:8px;" oninput="reqs[${i}].text=this.value;saveReqs();renderReqs();">${req.text}</textarea>
+      <div class="smart-checks">
+        ${["S","M","A","R","T"].map(l=>`<span class="smart-pill ${req.text.length>5?(smart[l]?"on":"off"):""}">${l} — ${{S:"Specific",M:"Measurable",A:"Achievable",R:"Relevant",T:"Time-bound"}[l]}</span>`).join("")}
+      </div>
+      ${!allPass && req.text.length>10 ? `<div style="font-size:11px;color:var(--red);margin-top:6px;">Needs work: ${["S","M","A","R","T"].filter(l=>!smart[l]).map(l=>({S:"be more specific",M:"add a measurable threshold (a number, unit, or time)",A:"check it's achievable",R:"connect it to the actual problem",T:"add a time or installation constraint"})[l]).join("; ")}</div>` : ""}
+    `;
+    container.appendChild(div);
+  });
+  renderCriteriaSelector();
+  const countEl = document.getElementById("req_count_display");
+  if(countEl){
+    const valid = reqs.filter(r=>Object.values(checkSMART(r.text)).every(Boolean)&&r.text.length>10).length;
+    countEl.textContent = `${reqs.length} requirement${reqs.length!==1?"s":""} written · ${valid} pass SMART check · need at least 5`;
+    countEl.style.color = valid>=5 ? "var(--green)" : "var(--red)";
+  }
+}
+
+function removeReq(i){reqs.splice(i,1);renderReqs();saveReqs();}
+function saveReqs(){save("reqs_json",JSON.stringify(reqs));}
+function loadReqs(){
+  const s=load("reqs_json");
+  if(s){try{reqs=JSON.parse(s);}catch(e){reqs=[];}}
+}
+
+// ── CRITERIA SELECTOR ────────────────────────────
+function renderCriteriaSelector(){
+  const el = document.getElementById("criteria_selector");
+  if(!el) return;
+  const validReqs = reqs.filter(r=>r.text.length>10);
+  if(!validReqs.length){el.innerHTML="<p style='color:var(--muted);font-size:13px;'>Add requirements above first.</p>";return;}
+  el.innerHTML = validReqs.map((req,i)=>`
+    <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);">
+      <input type="checkbox" id="crit_${i}" ${req.useCriterion?"checked":""} onchange="reqs[${i}].useCriterion=this.checked;saveReqs();" style="margin-top:3px;width:auto;accent-color:var(--orange);">
+      <label for="crit_${i}" style="margin:0;font-weight:400;color:var(--text);font-size:13px;cursor:pointer;">${req.text||"(empty requirement)"}</label>
+    </div>
+  `).join("");
+}
+
+// ── CONCEPTS ─────────────────────────────────────
+function addConcept(){
+  concepts.push({name:"",desc:"",material:""});
+  renderConcepts();
+  saveConcepts();
+}
+function removeConcept(i){concepts.splice(i,1);renderConcepts();saveConcepts();}
+function renderConcepts(){
+  const c=document.getElementById("concepts_container");
+  if(!c) return;
+  c.innerHTML="";
+  concepts.forEach((con,i)=>{
+    const div=document.createElement("div");
+    div.className="concept-card";
+    div.innerHTML=`
+      <div class="concept-card-header">
+        <div class="concept-num-badge">${i+1}</div>
+        <input type="text" value="${con.name}" placeholder="Concept name (e.g. Silicone gap cover strip)" style="font-size:15px;font-weight:700;" oninput="concepts[${i}].name=this.value;saveConcepts();">
+        <button class="btn-remove" onclick="removeConcept(${i})">✕</button>
+      </div>
+      <div class="input-row">
+        <div><label style="margin-top:0;">How it works</label><textarea rows="2" placeholder="e.g. A flexible silicone strip press-fits between oven and counter, blocking the gap. Removes easily for cleaning." oninput="concepts[${i}].desc=this.value;saveConcepts();">${con.desc}</textarea></div>
+        <div><label style="margin-top:0;">Primary material / method</label><input type="text" value="${con.material}" placeholder="e.g. FDM printed TPU, Silicone, Off-shelf foam, etc." oninput="concepts[${i}].material=this.value;saveConcepts();"></div>
+      </div>
+    `;
+    c.appendChild(div);
+  });
+  saveConcepts();
+}
+function saveConcepts(){save("concepts_json",JSON.stringify(concepts));}
+function loadConcepts(){const s=load("concepts_json");if(s){try{concepts=JSON.parse(s);}catch(e){concepts=[];}}}
+
+// ── DECISION MATRIX ───────────────────────────────
+function buildMatrix(){
+  const criteria = reqs.filter(r=>r.useCriterion && r.text.length>10);
+  const head = document.getElementById("matrix-head");
+  const body = document.getElementById("matrix-body");
+  const foot = document.getElementById("matrix-foot");
+  const rubric = document.getElementById("rubric_container");
+  if(!head||!body||!foot) return;
+
+  // Build rubric rows
+  if(rubric){
+    // Clear existing rubric rows (keep header)
+    const existingRows = rubric.querySelectorAll(".rubric-data-row");
+    existingRows.forEach(r=>r.remove());
+    criteria.forEach((req,ci)=>{
+      const row = document.createElement("div");
+      row.className="rubric-row rubric-data-row";
+      const short = req.text.length>60 ? req.text.substring(0,57)+"…" : req.text;
+      row.innerHTML=`
+        <div style="font-size:12px;color:var(--navy);">${short}</div>
+        <div><input type="text" placeholder="e.g. >$15" style="font-size:12px;padding:4px 6px;" value="${req.rubric1||""}" oninput="reqs[${reqs.indexOf(req)}].rubric1=this.value;saveReqs();"></div>
+        <div><input type="text" placeholder="e.g. $5-10" style="font-size:12px;padding:4px 6px;" value="${req.rubric3||""}" oninput="reqs[${reqs.indexOf(req)}].rubric3=this.value;saveReqs();"></div>
+        <div><input type="text" placeholder="e.g. <$2" style="font-size:12px;padding:4px 6px;" value="${req.rubric5||""}" oninput="reqs[${reqs.indexOf(req)}].rubric5=this.value;saveReqs();"></div>
+        <div><input type="number" min="1" max="5" value="${req.weight||3}" style="font-size:13px;font-weight:700;padding:4px 6px;text-align:center;" oninput="reqs[${reqs.indexOf(req)}].weight=parseInt(this.value)||3;saveReqs();calcMatrix();"></div>
+      `;
+      rubric.appendChild(row);
+    });
+  }
+
+  if(!criteria.length||!concepts.length){
+    head.innerHTML="<tr><th>Add concepts and select criteria to build the matrix</th></tr>";
+    body.innerHTML=""; foot.innerHTML=""; return;
+  }
+
+  // Header
+  head.innerHTML=`<tr>
+    <th class="left" style="min-width:160px;">Criterion</th>
+    <th style="min-width:50px;">Weight</th>
+    ${concepts.map((c,i)=>`<th colspan="2" style="min-width:100px;">C${i+1}: ${(c.name||"Concept "+(i+1)).substring(0,14)}</th>`).join("")}
+  </tr>
+  <tr>
+    <th class="left"></th><th></th>
+    ${concepts.map(()=>`<th style="background:#1A3A50;font-size:11px;">Score (1-5)</th><th style="background:#0D1B2A;font-size:11px;color:var(--orange);">Weighted</th>`).join("")}
+  </tr>`;
+
+  // Body
+  body.innerHTML = criteria.map((req,ci)=>{
+    const short = req.text.length>55 ? req.text.substring(0,52)+"…" : req.text;
+    return `<tr>
+      <td style="font-size:12px;">${short}</td>
+      <td style="text-align:center;font-weight:700;color:var(--orange);">${req.weight||3}</td>
+      ${concepts.map((con,conIdx)=>{
+        const s = (scores[conIdx]||{})[ci]||"";
+        const weighted = s ? ((parseFloat(s)||0)*(parseInt(req.weight)||3)).toFixed(0) : "—";
+        return `<td class="score-cell"><input type="number" min="1" max="5" value="${s}" placeholder="—"
+          oninput="if(!scores[${conIdx}])scores[${conIdx}]={};scores[${conIdx}][${ci}]=parseFloat(this.value)||0;saveScores();calcMatrix();"
+          style="width:48px;text-align:center;padding:4px 6px;font-size:13px;font-weight:700;border:1.5px solid var(--border);border-radius:4px;"></td>
+          <td class="weighted-score" id="ws_${conIdx}_${ci}">${weighted}</td>`;
+      }).join("")}
+    </tr>`;
+  }).join("");
+
+  calcMatrix();
+}
+
+function calcMatrix(){
+  const criteria = reqs.filter(r=>r.useCriterion&&r.text.length>10);
+  const foot = document.getElementById("matrix-foot");
+  const winnerEl = document.getElementById("matrix_winner");
+  if(!foot||!criteria.length||!concepts.length) return;
+
+  // Update weighted cells
+  criteria.forEach((req,ci)=>{
+    concepts.forEach((con,conIdx)=>{
+      const s=(scores[conIdx]||{})[ci]||0;
+      const w=parseInt(req.weight)||3;
+      const cell=document.getElementById(`ws_${conIdx}_${ci}`);
+      if(cell) cell.textContent = s ? (s*w).toFixed(0) : "—";
+    });
+  });
+
+  // Totals
+  const totals = concepts.map((con,conIdx)=>{
+    return criteria.reduce((sum,req,ci)=>{
+      const s=(scores[conIdx]||{})[ci]||0;
+      return sum + s*(parseInt(req.weight)||3);
+    },0);
+  });
+
+  const maxTotal = Math.max(...totals);
+  const winnerIdx = totals.indexOf(maxTotal);
+
+  foot.innerHTML=`<tr style="background:var(--navy);">
+    <td colspan="2" style="padding:8px 10px;font-weight:700;color:var(--orange);font-size:12px;text-transform:uppercase;letter-spacing:1px;">TOTAL WEIGHTED SCORE</td>
+    ${totals.map((t,i)=>`<td colspan="2" style="text-align:center;font-size:18px;font-weight:700;color:${i===winnerIdx?"#5DDB8A":"#AABFCF"};padding:10px 8px;">${t||"—"}${i===winnerIdx?" ★":""}</td>`).join("")}
+  </tr>`;
+
+  if(winnerEl&&totals.some(t=>t>0)){
+    const winnerName = concepts[winnerIdx]?.name||`Concept ${winnerIdx+1}`;
+    winnerEl.innerHTML=`<div class="success-box">★ <strong>Matrix result:</strong> ${winnerName} wins with a weighted score of ${maxTotal}. ${maxTotal>0&&totals.filter((t,i)=>i!==winnerIdx).length>0?"Second place: "+(concepts[totals.indexOf(Math.max(...totals.filter((_,i)=>i!==winnerIdx)))]?.name||"")+" with "+Math.max(...totals.filter((_,i)=>i!==winnerIdx))+".":""}</div>`;
+  }
+  saveScores();
+}
+
+function saveScores(){save("scores_json",JSON.stringify(scores));}
+function loadScores(){const s=load("scores_json");if(s){try{scores=JSON.parse(s);}catch(e){scores={};}}}
+
+// ── IMAGE UPLOAD ──────────────────────────────────
+function handleImageUpload(input){
+  const file=input.files[0]; if(!file) return;
+  const reader=new FileReader();
+  reader.onload=function(e){
+    cadImageDataURL=e.target.result;
+    localStorage.setItem(STORE+"cad_image",cadImageDataURL);
+    const p=document.getElementById("uploadPreview"); if(p){p.src=cadImageDataURL;p.style.display="block";}
+    const fn=document.getElementById("uploadFileName"); if(fn){fn.style.display="block";fn.textContent="✅ Uploaded: "+file.name;}
+  };
+  reader.readAsDataURL(file);
+}
+
+// ── SUMMARY ───────────────────────────────────────
+function buildSummary(){
+  const rows=(items)=>items.map(([q,a])=>`<div class="summary-row"><span class="summary-q">${q}</span><span class="summary-a">${a||"<em style='color:#AAA'>Not answered</em>"}</span></div>`).join("");
+
+  document.getElementById("summary-problem").innerHTML=rows([
+    ["Client said",load("p_client_said")],["Root cause",load("p_root_cause")],
+    ["Gap width",load("p_gap_w")],["Gap height",load("p_gap_h")],
+    ["Smallest toy",load("p_toy_size")],["Appliance type",load("p_appliance_type")],
+    ["Budget",load("p_budget")],["Existing solutions",load("p_existing")],
+  ]);
+
+  const reqList = reqs.map((r,i)=>`FR-${i+1}: ${r.text}`).join("\n")||"(none)";
+  const critList = reqs.filter(r=>r.useCriterion&&r.text.length>10).map((r,i)=>`C${i+1} (Wt:${r.weight||3}): ${r.text}`).join("\n")||"(none)";
+  document.getElementById("summary-reqs").innerHTML=rows([
+    ["Requirements written",reqs.length+" total"],
+    ["Requirements",reqList],
+    ["Criteria in matrix",critList],
+  ]);
+
+  const criteria=reqs.filter(r=>r.useCriterion&&r.text.length>10);
+  const totals=concepts.map((_,ci)=>criteria.reduce((s,req,ri)=>s+((scores[ci]||{})[ri]||0)*(parseInt(req.weight)||3),0));
+  const winnerIdx=totals.indexOf(Math.max(...totals));
+  document.getElementById("summary-decision").innerHTML=rows([
+    ["Concepts evaluated",concepts.length+" concepts"],
+    ["Matrix winner",concepts[winnerIdx]?.name||load("b_winner")],
+    ["Agree with matrix",load("b_agree")],
+    ["What would change it",load("b_what_if")],
+  ]);
+
+  let cadHTML=rows([
+    ["What to test",load("c_what_to_test")],
+    ["Test plan",load("c_test_plan")],
+    ["Onshape link",load("c_onshape_link")?`<a href="${load("c_onshape_link")}" target="_blank">Open →</a>`:""],
+    ["CAD notes",load("c_cad_notes")],
+  ]);
+  if(cadImageDataURL) cadHTML+=`<div style="margin-top:12px"><img src="${cadImageDataURL}" style="max-width:100%;max-height:300px;border-radius:6px;border:2px solid var(--orange)"></div>`;
+  document.getElementById("summary-cad").innerHTML=cadHTML;
+}
+
+// ── PPTX ─────────────────────────────────────────
+async function generateReport(){
+  const btn=document.querySelector(".btn-success");
+  btn.textContent="⏳ Building…"; btn.disabled=true;
+  try{
+    const pptx=new PptxGenJS();
+    pptx.defineLayout({name:"WIDE",width:13.33,height:7.5}); pptx.layout="WIDE";
+    const C={navy:"0D1B2A",steel:"1B4F72",orange:"F4831F",white:"FFFFFF",offwh:"F0F4F8",muted:"7A8FA6",text:"1A2530",green:"1E7D4A"};
+    const name=load("r_name")||"Student";
+    const date=load("r_date")||"";
+    const addHdr=(sl,title,pg)=>{
+      sl.addShape(pptx.ShapeType.rect,{x:0,y:0,w:.18,h:7.5,fill:{color:C.orange},line:{color:C.orange}});
+      sl.addShape(pptx.ShapeType.rect,{x:0,y:0,w:13.33,h:1,fill:{color:C.navy},line:{color:C.navy}});
+      sl.addText(title,{x:.4,y:.1,w:11,h:.45,fontSize:11,color:C.orange,bold:true,charSpacing:2,fontFace:"Calibri"});
+      sl.addText(pg,{x:11.5,y:.15,w:1.5,h:.35,fontSize:11,color:C.muted,fontFace:"Calibri",align:"right"});
+    };
+
+    // Slide 1: Title
+    let sl=pptx.addSlide(); sl.background={color:C.navy};
+    sl.addShape(pptx.ShapeType.rect,{x:0,y:0,w:.18,h:7.5,fill:{color:C.orange},line:{color:C.orange}});
+    sl.addText("FEDS 201 · MECHANICAL DESIGN",{x:.4,y:1.2,w:12.5,h:.4,fontSize:12,color:C.orange,bold:true,charSpacing:3,fontFace:"Calibri"});
+    sl.addText("Design Challenge #3",{x:.4,y:1.7,w:12.5,h:.7,fontSize:36,color:C.white,bold:true,fontFace:"Cambria"});
+    sl.addText("The Cat Toy Problem",{x:.4,y:2.5,w:12.5,h:.9,fontSize:46,color:C.orange,bold:true,fontFace:"Cambria"});
+    sl.addText("Engineering Design Process",{x:.4,y:3.5,w:12.5,h:.5,fontSize:22,color:"8BAFC8",fontFace:"Cambria"});
+    sl.addShape(pptx.ShapeType.rect,{x:.4,y:4.2,w:5,h:.04,fill:{color:C.steel},line:{color:C.steel}});
+    sl.addText(name,{x:.4,y:4.35,w:8,h:.5,fontSize:22,color:C.white,fontFace:"Calibri"});
+    sl.addText(date,{x:.4,y:4.9,w:8,h:.4,fontSize:16,color:C.muted,fontFace:"Calibri"});
+
+    // Slide 2: Problem Definition
+    sl=pptx.addSlide(); sl.background={color:C.offwh}; addHdr(sl,"PROBLEM DEFINITION","Page 2 of 6");
+    const probItems=[
+      ["CLIENT SAID",load("p_client_said")],["ROOT CAUSE",load("p_root_cause")],
+      ["GAP WIDTH",load("p_gap_w")],["SMALLEST TOY",load("p_toy_size")],
+      ["BUDGET",load("p_budget")],["CONSTRAINTS",load("p_constraints")],
+    ];
+    probItems.forEach(([label,val],i)=>{
+      const col=i%2; const row=Math.floor(i/2);
+      const x=col===0?.4:6.8; const y=1.15+row*1.95;
+      sl.addShape(pptx.ShapeType.rect,{x,y,w:6.1,h:1.8,fill:{color:C.white},line:{color:"D0DCE8",pt:1.5},rectRadius:.08});
+      sl.addText(label,{x:x+.15,y:y+.1,w:5.8,h:.3,fontSize:10,color:C.orange,bold:true,charSpacing:1.5,fontFace:"Calibri"});
+      sl.addText(val||"(not answered)",{x:x+.15,y:y+.45,w:5.8,h:1.2,fontSize:12,color:C.text,fontFace:"Calibri",wrap:true});
+    });
+
+    // Slide 3: Requirements
+    sl=pptx.addSlide(); sl.background={color:C.navy}; addHdr(sl,"SMART REQUIREMENTS","Page 3 of 6");
+    const validReqs=reqs.filter(r=>r.text.length>10);
+    validReqs.slice(0,8).forEach((req,i)=>{
+      const y=1.15+i*.72;
+      sl.addShape(pptx.ShapeType.rect,{x:.4,y,w:.5,h:.55,fill:{color:C.orange},line:{color:C.orange},rectRadius:.05});
+      sl.addText(`FR-${i+1}`,{x:.4,y,w:.5,h:.55,fontSize:11,color:C.white,bold:true,align:"center",fontFace:"Calibri"});
+      sl.addShape(pptx.ShapeType.rect,{x:1.0,y,w:11.9,h:.55,fill:{color:"142030"},line:{color:"1E3550",pt:1},rectRadius:.05});
+      sl.addText(req.text,{x:1.15,y:y+.08,w:11.6,h:.4,fontSize:12,color:"DDEAF5",fontFace:"Calibri",wrap:false});
+    });
+    if(validReqs.length>8) sl.addText(`+ ${validReqs.length-8} more requirements`,{x:.4,y:7.0,w:12,h:.3,fontSize:11,color:C.muted,fontFace:"Calibri"});
+
+    // Slide 4: Decision Matrix
+    sl=pptx.addSlide(); sl.background={color:C.offwh}; addHdr(sl,"WEIGHTED DECISION MATRIX","Page 4 of 6");
+    const criteria=reqs.filter(r=>r.useCriterion&&r.text.length>10);
+    const totals=concepts.map((_,ci)=>criteria.reduce((s,req,ri)=>s+((scores[ci]||{})[ri]||0)*(parseInt(req.weight)||3),0));
+    const winnerIdx=totals.indexOf(Math.max(...totals));
+    if(criteria.length&&concepts.length){
+      // Header row
+      const colW=Math.min(2.0,9.5/concepts.length);
+      const startX=3.5;
+      sl.addShape(pptx.ShapeType.rect,{x:.4,y:1.15,w:3.0,h:.5,fill:{color:C.steel},line:{color:C.steel}});
+      sl.addText("CRITERION",{x:.4,y:1.15,w:2.8,h:.5,fontSize:11,color:C.white,bold:true,fontFace:"Calibri"});
+      sl.addShape(pptx.ShapeType.rect,{x:3.1,y:1.15,w:.35,h:.5,fill:{color:C.steel},line:{color:C.steel}});
+      sl.addText("WT",{x:3.1,y:1.15,w:.35,h:.5,fontSize:10,color:C.white,bold:true,align:"center",fontFace:"Calibri"});
+      concepts.forEach((con,ci)=>{
+        const bg=ci===winnerIdx?"1E7D4A":C.steel;
+        sl.addShape(pptx.ShapeType.rect,{x:startX+ci*colW,y:1.15,w:colW-.04,h:.5,fill:{color:bg},line:{color:bg}});
+        sl.addText((con.name||`C${ci+1}`).substring(0,16),{x:startX+ci*colW,y:1.15,w:colW-.04,h:.5,fontSize:10,color:C.white,bold:true,align:"center",fontFace:"Calibri"});
+      });
+      criteria.slice(0,7).forEach((req,ri)=>{
+        const y=1.75+ri*.62;
+        const bg=ri%2===0?"FFFFFF":C.offwh;
+        sl.addShape(pptx.ShapeType.rect,{x:.4,y,w:3.0,h:.55,fill:{color:bg},line:{color:"D0DCE8",pt:.5}});
+        sl.addText(req.text.substring(0,48),{x:.45,y:y+.08,w:2.9,h:.4,fontSize:10,color:C.text,fontFace:"Calibri"});
+        sl.addShape(pptx.ShapeType.rect,{x:3.1,y,w:.35,h:.55,fill:{color:bg},line:{color:"D0DCE8",pt:.5}});
+        sl.addText(String(req.weight||3),{x:3.1,y:y+.08,w:.35,h:.4,fontSize:12,color:C.orange,bold:true,align:"center",fontFace:"Calibri"});
+        concepts.forEach((con,ci)=>{
+          const s=(scores[ci]||{})[ri]||0;
+          const ws=s*(parseInt(req.weight)||3);
+          const cellBg=ci===winnerIdx?"E8F8EF":bg;
+          sl.addShape(pptx.ShapeType.rect,{x:startX+ci*colW,y,w:colW-.04,h:.55,fill:{color:cellBg},line:{color:"D0DCE8",pt:.5}});
+          sl.addText(s?`${s} → ${ws}`:"—",{x:startX+ci*colW,y:y+.08,w:colW-.04,h:.4,fontSize:11,color:s?C.text:C.muted,bold:!!s,align:"center",fontFace:"Calibri"});
+        });
+      });
+      // Totals row
+      const ty=1.75+Math.min(criteria.length,7)*.62+.05;
+      sl.addShape(pptx.ShapeType.rect,{x:.4,y:ty,w:3.45,h:.55,fill:{color:C.navy},line:{color:C.navy}});
+      sl.addText("TOTAL WEIGHTED SCORE",{x:.45,y:ty+.1,w:3.35,h:.38,fontSize:11,color:C.orange,bold:true,fontFace:"Calibri"});
+      totals.forEach((t,ci)=>{
+        sl.addShape(pptx.ShapeType.rect,{x:startX+ci*colW,y:ty,w:colW-.04,h:.55,fill:{color:ci===winnerIdx?"1E7D4A":C.navy},line:{color:C.navy}});
+        sl.addText((t||"0")+(ci===winnerIdx?" ★":""),{x:startX+ci*colW,y:ty+.08,w:colW-.04,h:.4,fontSize:16,color:ci===winnerIdx?"FFFFFF":"AABFCF",bold:true,align:"center",fontFace:"Cambria"});
+      });
+    } else {
+      sl.addText("Matrix not completed",{x:.4,y:2,w:12,h:1,fontSize:18,color:C.muted,align:"center",fontFace:"Calibri"});
+    }
+
+    // Slide 5: CAD
+    sl=pptx.addSlide(); sl.background={color:C.navy};
+    sl.addShape(pptx.ShapeType.rect,{x:0,y:0,w:.18,h:7.5,fill:{color:C.orange},line:{color:C.orange}});
+    sl.addText("PROTOTYPE CAD MODEL",{x:.4,y:.12,w:12,h:.45,fontSize:11,color:C.orange,bold:true,charSpacing:2,fontFace:"Calibri"});
+    sl.addText("Page 5 of 6",{x:11.5,y:.15,w:1.5,h:.35,fontSize:11,color:C.muted,fontFace:"Calibri",align:"right"});
+    sl.addText(name+" · "+date,{x:.4,y:.6,w:12,h:.3,fontSize:13,color:C.muted,fontFace:"Calibri"});
+    if(cadImageDataURL){
+      sl.addImage({data:cadImageDataURL,x:.4,y:1.05,w:8.5,h:5.7,sizing:{type:"contain",w:8.5,h:5.7}});
+    } else {
+      sl.addShape(pptx.ShapeType.rect,{x:.4,y:1.05,w:8.5,h:5.7,fill:{color:"1A2D40"},line:{color:"2A4060",pt:2},rectRadius:.12});
+      sl.addText("No CAD image uploaded",{x:.4,y:3.5,w:8.5,h:.6,fontSize:18,color:C.muted,align:"center",fontFace:"Calibri"});
+    }
+    const cadNotes=[
+      ["CONCEPT SELECTED",concepts[winnerIdx]?.name||load("b_winner")||"—"],
+      ["WHAT TO TEST",load("c_what_to_test")||"—"],
+      ["ONSHAPE LINK",load("c_onshape_link")||"—"],
+    ];
+    cadNotes.forEach(([label,val],i)=>{
+      sl.addShape(pptx.ShapeType.rect,{x:9.1,y:1.05+i*2.1,w:3.8,h:1.95,fill:{color:"142030"},line:{color:"1E3550",pt:1},rectRadius:.08});
+      sl.addText(label,{x:9.3,y:1.12+i*2.1,w:3.4,h:.28,fontSize:10,color:C.orange,bold:true,charSpacing:1.5,fontFace:"Calibri"});
+      sl.addText(val,{x:9.3,y:1.45+i*2.1,w:3.4,h:1.4,fontSize:11,color:"AABFCF",fontFace:"Calibri",wrap:true});
+    });
+
+    // Slide 6: Reflection
+    sl=pptx.addSlide(); sl.background={color:C.offwh}; addHdr(sl,"REFLECTION","Page 6 of 6");
+    const refls=[
+      ["WHAT SURPRISED YOU ABOUT THE PROCESS",load("s_process")],
+      ["DID THE MATRIX PICK WHAT YOU EXPECTED?",load("s_matrix")],
+      ["CONNECTION TO FRC MECHANISM SELECTION",load("s_frc")],
+    ];
+    refls.forEach(([title,text],i)=>{
+      sl.addShape(pptx.ShapeType.rect,{x:.4,y:1.15+i*1.95,w:12.5,h:1.8,fill:{color:i%2===0?"FFFFFF":C.navy},line:{color:"D0DCE8",pt:1},rectRadius:.08});
+      sl.addText(title,{x:.6,y:1.23+i*1.95,w:12,h:.3,fontSize:10,color:C.orange,bold:true,charSpacing:1.5,fontFace:"Calibri"});
+      sl.addText(text||"(not answered)",{x:.6,y:1.6+i*1.95,w:12.1,h:1.2,fontSize:13,color:i%2===0?C.text:"DDEAF5",fontFace:"Calibri",wrap:true});
+    });
+    sl.addShape(pptx.ShapeType.rect,{x:0,y:6.8,w:13.33,h:.7,fill:{color:C.navy},line:{color:C.navy}});
+    sl.addText("FEDS 201  ·  "+name+"  ·  Design Challenge #3 — Cat Toy Problem  ·  "+date,{x:.4,y:6.87,w:12.5,h:.35,fontSize:11,color:C.muted,fontFace:"Calibri"});
+
+    const safeName=(load("r_name")||"Student").replace(/\s+/g,"_");
+    await pptx.writeFile({fileName:`FEDS201_${safeName}_CatToyProblem.pptx`});
+  } catch(err){console.error(err);alert("Error: "+err.message);}
+  btn.textContent="⬇ Generate Report (.pptx)"; btn.disabled=false;
+}
+
+// ── RESTORE ───────────────────────────────────────
+function restoreAll(){
+  const fields=["r_name","r_date","p_client_said","p_client_needs","p_root_cause",
+    "p_gap_w","p_gap_h","p_toy_size","p_budget","p_existing","p_constraints","p_open_questions",
+    "b_winner","b_agree","b_what_if",
+    "c_what_to_test","c_simplifications","c_test_plan","c_expected","c_onshape_link","c_cad_notes",
+    "s_process","s_matrix","s_frc"];
+  fields.forEach(id=>{const el=document.getElementById(id);if(el)el.value=load(id);});
+  const pat=document.getElementById("p_appliance_type"); if(pat&&load("p_appliance_type"))pat.value=load("p_appliance_type");
+  const pr=document.getElementById("p_removable"); if(pr&&load("p_removable"))pr.value=load("p_removable");
+
+  loadReqs(); loadConcepts(); loadScores();
+  if(reqs.length===0){
+    // Seed 2 example requirements to get them started
+    reqs=[
+      {text:"",smart:{},useCriterion:false,weight:3,rubric1:"",rubric3:"",rubric5:""},
+    ];
+  }
+  if(concepts.length===0) concepts=[{name:"",desc:"",material:""}];
+
+  renderReqs();
+  renderConcepts();
+
+  const img=localStorage.getItem(STORE+"cad_image");
+  if(img){
+    cadImageDataURL=img;
+    const p=document.getElementById("uploadPreview"); if(p){p.src=img;p.style.display="block";}
+    const fn=document.getElementById("uploadFileName"); if(fn){fn.style.display="block";fn.textContent="✅ Image loaded from previous session";}
+  }
+}
+
+document.addEventListener("DOMContentLoaded",()=>{
+  restoreAll(); updateProgress();
+  if(!load("r_date")){
+    const t=new Date();
+    const d=(t.getMonth()+1).toString().padStart(2,"0")+"/"+t.getDate().toString().padStart(2,"0")+"/"+t.getFullYear();
+    const el=document.getElementById("r_date"); if(el){el.value=d;save("r_date",d);}
+  }
+});
+</script>
+</body>
+</html>
