@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Design Challenge #1 — Tennis Ball Desk Holder</title>
+<title>Design Challenge #1 â€” Tennis Ball Desk Holder</title>
 <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
 <style>
   :root {
@@ -31,7 +31,7 @@
     flex-direction: column;
   }
 
-  /* ── Top Header ── */
+  /* â”€â”€ Top Header â”€â”€ */
   .site-header {
     background: var(--navy);
     padding: 18px 32px 0;
@@ -50,7 +50,7 @@
     letter-spacing: 1.5px;
   }
 
-  /* ── Progress Bar ── */
+  /* â”€â”€ Progress Bar â”€â”€ */
   .progress-track {
     display: flex;
     align-items: center;
@@ -114,7 +114,7 @@
   .progress-step.active .step-label { color: var(--orange); }
   .progress-step.done .step-label { color: #8BAFC8; }
 
-  /* ── Page Container ── */
+  /* â”€â”€ Page Container â”€â”€ */
   .page-outer {
     flex: 1;
     background: var(--offwhite);
@@ -139,7 +139,7 @@
     padding: 32px 40px 32px 46px;
   }
 
-  /* ── Page Title ── */
+  /* â”€â”€ Page Title â”€â”€ */
   .page-tag {
     font-size: 11px;
     text-transform: uppercase;
@@ -163,7 +163,7 @@
     max-width: 720px;
   }
 
-  /* ── Content Cards ── */
+  /* â”€â”€ Content Cards â”€â”€ */
   .card {
     background: var(--card);
     border: 1px solid var(--border);
@@ -189,7 +189,7 @@
     flex-shrink: 0;
   }
 
-  /* ── Technical Brief Styles ── */
+  /* â”€â”€ Technical Brief Styles â”€â”€ */
   .concept-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -251,7 +251,7 @@
   }
   .spec-table tr:nth-child(even) td { background: var(--offwhite); }
 
-  /* ── Form Styles ── */
+  /* â”€â”€ Form Styles â”€â”€ */
   label {
     display: block;
     font-size: 13px;
@@ -290,7 +290,7 @@
     gap: 14px;
   }
 
-  /* ── Radio/Checkbox groups ── */
+  /* â”€â”€ Radio/Checkbox groups â”€â”€ */
   .choice-group {
     display: flex;
     flex-wrap: wrap;
@@ -316,7 +316,7 @@
   }
   .choice-pill input { display: none; }
 
-  /* ── CAD Page ── */
+  /* â”€â”€ CAD Page â”€â”€ */
   .step-list {
     counter-reset: cad-steps;
     list-style: none;
@@ -393,7 +393,7 @@
     margin-top: 12px;
   }
 
-  /* ── Summary Page ── */
+  /* â”€â”€ Summary Page â”€â”€ */
   .summary-row {
     display: flex;
     justify-content: space-between;
@@ -408,7 +408,7 @@
   .summary-a { color: var(--text); font-weight: 600; flex: 1; text-align: right; }
   .summary-img { max-width: 200px; max-height: 140px; border-radius: 6px; border: 1px solid var(--border); margin-top: 6px; }
 
-  /* ── Navigation Buttons ── */
+  /* â”€â”€ Navigation Buttons â”€â”€ */
   .nav-bar {
     display: flex;
     justify-content: space-between;
@@ -452,7 +452,7 @@
   .btn-success:hover { background: #165E38; }
   .btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
-  /* ── Utilities ── */
+  /* â”€â”€ Utilities â”€â”€ */
   .hidden { display: none !important; }
   .required-star { color: var(--orange); }
   .section-divider {
@@ -479,7 +479,7 @@
 <body>
 
 <div class="site-header">
-  <div class="subtitle">FEDS 201 · Mechanical Design · Challenge #1</div>
+  <div class="subtitle">FEDS 201 Â· Mechanical Design Â· Challenge #1</div>
   <h1>Design a Tennis Ball Desk Holder</h1>
 </div>
 
@@ -503,16 +503,20 @@
   </div>
   <div class="progress-step" data-page="4" onclick="goToPage(4)">
     <div class="step-circle">5</div>
+    <div class="step-label">Badges</div>
+  </div>
+  <div class="progress-step" data-page="5" onclick="goToPage(5)">
+    <div class="step-circle">6</div>
     <div class="step-label">Summary</div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════════
-     PAGE 0 — TECHNICAL BRIEF
-══════════════════════════════════════════════════ -->
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     PAGE 0 â€” TECHNICAL BRIEF
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <div class="page-outer" id="page-0">
   <div class="page-inner">
-    <div class="page-tag">Page 1 of 5 · Technical Content</div>
+    <div class="page-tag">Page 1 of 5 Â· Technical Content</div>
     <h2 class="page-title">The Physics of Keeping Things Still</h2>
     <p class="page-intro">
       Before you design anything, you need to understand the forces at work. This page covers the concepts you'll use to design a holder that actually keeps a tennis ball from rolling off your desk. Read through all sections before moving on.
@@ -520,9 +524,9 @@
 
     <!-- Card 1: The Problem -->
     <div class="card">
-      <div class="card-title"><div class="icon">⚽</div> Why Does a Ball Roll?</div>
+      <div class="card-title"><div class="icon">âš½</div> Why Does a Ball Roll?</div>
       <p style="font-size:14px; line-height:1.7; color:#3A5060;">
-        A sphere resting on a flat surface has only one point of contact. Any horizontal force — a vibration, a bump, even air movement — creates a net torque around that single contact point. With no restoring force to oppose it, the ball rolls freely. Your job is to create a <strong>geometry that provides multiple contact points</strong>, distributing the ball's weight and creating a stable equilibrium.
+        A sphere resting on a flat surface has only one point of contact. Any horizontal force â€” a vibration, a bump, even air movement â€” creates a net torque around that single contact point. With no restoring force to oppose it, the ball rolls freely. Your job is to create a <strong>geometry that provides multiple contact points</strong>, distributing the ball's weight and creating a stable equilibrium.
       </p>
       <div class="concept-grid">
         <div class="concept-box">
@@ -531,32 +535,32 @@
         </div>
         <div class="concept-box">
           <h4>Stable Equilibrium</h4>
-          <p>Ball in a holder. Multiple contact points or a shaped cradle. A small disturbance is countered by restoring forces — the ball returns to its resting position.</p>
+          <p>Ball in a holder. Multiple contact points or a shaped cradle. A small disturbance is countered by restoring forces â€” the ball returns to its resting position.</p>
         </div>
       </div>
     </div>
 
     <!-- Card 2: Center of Gravity & Stability -->
     <div class="card">
-      <div class="card-title"><div class="icon">⬇</div> Center of Gravity & Stability</div>
+      <div class="card-title"><div class="icon">â¬‡</div> Center of Gravity & Stability</div>
       <p style="font-size:14px; line-height:1.7; color:#3A5060;">
-        Every object's weight acts through its <strong>Center of Gravity (CoG)</strong> — the single point where gravity appears to act on the entire mass. For a uniform sphere like a tennis ball, the CoG is exactly at the geometric center.
+        Every object's weight acts through its <strong>Center of Gravity (CoG)</strong> â€” the single point where gravity appears to act on the entire mass. For a uniform sphere like a tennis ball, the CoG is exactly at the geometric center.
       </p>
       <p style="font-size:14px; line-height:1.7; color:#3A5060; margin-top:10px;">
-        A system is <strong>stable</strong> when the CoG is low and directly above the base of support. A holder works by dropping the ball's CoG below the rim of the cradle — the ball would have to <em>rise</em> to escape, which requires energy it doesn't have.
+        A system is <strong>stable</strong> when the CoG is low and directly above the base of support. A holder works by dropping the ball's CoG below the rim of the cradle â€” the ball would have to <em>rise</em> to escape, which requires energy it doesn't have.
       </p>
       <div class="formula-box">
         <span class="formula-label">Key Rule: Stability Triangle / Base of Support</span>
         Stability increases when:<br>
-        → CoG height is LOW relative to the base<br>
-        → Contact points are SPREAD APART<br>
-        → The CoG projects INSIDE the base of support polygon
+        â†’ CoG height is LOW relative to the base<br>
+        â†’ Contact points are SPREAD APART<br>
+        â†’ The CoG projects INSIDE the base of support polygon
       </div>
     </div>
 
     <!-- Card 3: Contact Geometry -->
     <div class="card">
-      <div class="card-title"><div class="icon">📐</div> Contact Geometry — How Your Holder Touches the Ball</div>
+      <div class="card-title"><div class="icon">ðŸ“</div> Contact Geometry â€” How Your Holder Touches the Ball</div>
       <p style="font-size:14px; line-height:1.7; color:#3A5060;">
         How your holder meets the sphere determines how stable it is. Three common approaches:
       </p>
@@ -567,11 +571,11 @@
         </div>
         <div class="concept-box">
           <h4>Concave Spherical Cup</h4>
-          <p>A matching radius carved out to hold the sphere. Maximum contact area. Requires the internal radius ≥ ball radius. Slightly harder to model in CAD.</p>
+          <p>A matching radius carved out to hold the sphere. Maximum contact area. Requires the internal radius â‰¥ ball radius. Slightly harder to model in CAD.</p>
         </div>
         <div class="concept-box">
           <h4>3-Point Contact (Pegs/Posts)</h4>
-          <p>Three or more posts arranged in a circle. Ball rests on the tops. Easy to 3D print. Stability depends on post spacing — too close and the ball can escape.</p>
+          <p>Three or more posts arranged in a circle. Ball rests on the tops. Easy to 3D print. Stability depends on post spacing â€” too close and the ball can escape.</p>
         </div>
         <div class="concept-box">
           <h4>Ring Support</h4>
@@ -580,18 +584,18 @@
       </div>
 
       <div class="formula-box">
-        <span class="formula-label">Geometry Check — Ring / Cradle Opening Diameter</span>
+        <span class="formula-label">Geometry Check â€” Ring / Cradle Opening Diameter</span>
         For the ball to sit IN the holder (not on top):<br><br>
         D_opening  &lt;  D_ball<br><br>
         For a 3-point peg holder, the ball rests at height h above the peg base:<br>
-        h = R_ball − √(R_ball² − R_peg_circle²)<br><br>
+        h = R_ball âˆ’ âˆš(R_ballÂ² âˆ’ R_peg_circleÂ²)<br><br>
         where R_peg_circle = radius of the circle the pegs sit on
       </div>
     </div>
 
     <!-- Card 4: Tennis Ball Spec -->
     <div class="card">
-      <div class="card-title"><div class="icon">📏</div> Tennis Ball Specifications <span class="badge badge-spec">Official ITF Standard</span></div>
+      <div class="card-title"><div class="icon">ðŸ“</div> Tennis Ball Specifications <span class="badge badge-spec">Official ITF Standard</span></div>
       <p style="font-size:14px; line-height:1.7; color:#3A5060; margin-bottom:12px;">
         All competition tennis balls must meet International Tennis Federation (ITF) standards. Your design must accommodate any ball within this range. You will also <strong>measure your own ball</strong> on the Requirements page.
       </p>
@@ -599,17 +603,17 @@
         <tr><th>Parameter</th><th>Minimum</th><th>Maximum</th><th>Nominal (design target)</th></tr>
         <tr><td>Diameter</td><td>2.575 in (65.41 mm)</td><td>2.700 in (68.58 mm)</td><td>2.63 in (66.8 mm)</td></tr>
         <tr><td>Mass</td><td>1.975 oz (56.0 g)</td><td>2.095 oz (59.4 g)</td><td>~2.0 oz (57 g)</td></tr>
-        <tr><td>Deformation (forward)</td><td>0.220 in</td><td>0.290 in</td><td>—</td></tr>
+        <tr><td>Deformation (forward)</td><td>0.220 in</td><td>0.290 in</td><td>â€”</td></tr>
         <tr><td>Surface</td><td colspan="3">Uniform felt-covered, may affect friction with holder surface</td></tr>
       </table>
       <div class="warn-box">
-        ⚠️ <strong>Design tip:</strong> Build your holder for the <em>maximum</em> diameter (2.700 in / 68.58 mm) with a small clearance allowance. A holder that fits the max spec will fit all legal balls. A holder sized for the minimum may not accommodate all balls.
+        âš ï¸ <strong>Design tip:</strong> Build your holder for the <em>maximum</em> diameter (2.700 in / 68.58 mm) with a small clearance allowance. A holder that fits the max spec will fit all legal balls. A holder sized for the minimum may not accommodate all balls.
       </div>
     </div>
 
     <!-- Card 5: Forces at Play -->
     <div class="card">
-      <div class="card-title"><div class="icon">🔩</div> Forces Your Holder Must Handle</div>
+      <div class="card-title"><div class="icon">ðŸ”©</div> Forces Your Holder Must Handle</div>
       <div class="concept-grid">
         <div class="concept-box">
           <h4>Normal Force (N)</h4>
@@ -617,7 +621,7 @@
         </div>
         <div class="concept-box">
           <h4>Friction Force (f)</h4>
-          <p>Opposes motion along the contact surface. Higher friction coefficient (rubber, felt) = better grip. f ≤ μN where μ is the friction coefficient.</p>
+          <p>Opposes motion along the contact surface. Higher friction coefficient (rubber, felt) = better grip. f â‰¤ Î¼N where Î¼ is the friction coefficient.</p>
         </div>
         <div class="concept-box">
           <h4>Gravity (mg)</h4>
@@ -634,24 +638,24 @@
 
   <div class="nav-bar">
     <div></div>
-    <button class="btn btn-primary" onclick="goToPage(1)">Next: Requirements →</button>
+    <button class="btn btn-primary" onclick="goToPage(1)">Next: Requirements â†’</button>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════════
-     PAGE 1 — REQUIREMENTS
-══════════════════════════════════════════════════ -->
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     PAGE 1 â€” REQUIREMENTS
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <div class="page-outer hidden" id="page-1">
   <div class="page-inner">
-    <div class="page-tag">Page 2 of 5 · Requirements Capture</div>
+    <div class="page-tag">Page 2 of 5 Â· Requirements Capture</div>
     <h2 class="page-title">Define What Your Design Must Do</h2>
     <p class="page-intro">
-      Good engineering starts with requirements, not solutions. Fill out every field below before you think about what your holder will look like. Measure your tennis ball with calipers or a ruler — don't guess.
+      Good engineering starts with requirements, not solutions. Fill out every field below before you think about what your holder will look like. Measure your tennis ball with calipers or a ruler â€” don't guess.
     </p>
 
     <!-- Student Info -->
     <div class="card">
-      <div class="card-title"><div class="icon">👤</div> Student Information</div>
+      <div class="card-title"><div class="icon">ðŸ‘¤</div> Student Information</div>
       <div class="input-row">
         <div>
           <label for="r_name">Full Name <span class="required-star">*</span></label>
@@ -664,21 +668,36 @@
       </div>
       <div class="input-row" style="margin-top:14px;">
         <div>
-          <label for="r_role">Your Primary Role on the Team</label>
+          <label for="r_role">Your Subgroup on the Team <span class="label-hint">select your primary group</span></label>
           <select id="r_role" onchange="save('r_role',this.value)">
-            <option value="">Select…</option>
-            <option>Mechanical Design</option>
-            <option>CAD / Onshape Modeler</option>
-            <option>Both</option>
+            <option value="">Selectâ€¦</option>
+            <optgroup label="Build Team">
+              <option>Mechanical</option>
+              <option>Machining</option>
+              <option>CAD / Design</option>
+              <option>Electrical</option>
+            </optgroup>
+            <optgroup label="Software Team">
+              <option>Programming</option>
+              <option>Scouting / Strategy</option>
+            </optgroup>
+            <optgroup label="Operations Team">
+              <option>Safety</option>
+              <option>Business Planning</option>
+              <option>Marketing / STEM Advocacy</option>
+            </optgroup>
+            <option value="">â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€</option>
+            <option>Multiple Groups</option>
+            <option>Not Yet Assigned / New Member</option>
           </select>
         </div>
         <div>
           <label for="r_onshape">Onshape Experience Level</label>
           <select id="r_onshape" onchange="save('r_onshape',this.value)">
-            <option value="">Select…</option>
-            <option>Beginner — first time or very limited</option>
-            <option>Intermediate — comfortable with basic features</option>
-            <option>Advanced — can use assemblies, mates, configurations</option>
+            <option value="">Selectâ€¦</option>
+            <option>Beginner â€” first time or very limited</option>
+            <option>Intermediate â€” comfortable with basic features</option>
+            <option>Advanced â€” can use assemblies, mates, configurations</option>
           </select>
         </div>
       </div>
@@ -686,23 +705,23 @@
 
     <!-- Measurements -->
     <div class="card">
-      <div class="card-title"><div class="icon">📏</div> Ball Measurements — Measure Your Own Ball</div>
+      <div class="card-title"><div class="icon">ðŸ“</div> Ball Measurements â€” Measure Your Own Ball</div>
       <div class="info-box">
-        📌 Use a caliper, ruler, or wrap a piece of string around the ball and measure the circumference (then divide by π to get diameter). Measure in <strong>at least 3 orientations</strong> and record the average.
+        ðŸ“Œ Use a caliper, ruler, or wrap a piece of string around the ball and measure the circumference (then divide by Ï€ to get diameter). Measure in <strong>at least 3 orientations</strong> and record the average.
       </div>
       <div class="input-row" style="margin-top:14px;">
         <div>
-          <label for="r_meas1">Measurement 1 — Diameter (inches)</label>
+          <label for="r_meas1">Measurement 1 â€” Diameter (inches)</label>
           <input type="number" id="r_meas1" step="0.001" min="2" max="3" placeholder="e.g. 2.615" oninput="save('r_meas1',this.value); calcAvg()">
         </div>
         <div>
-          <label for="r_meas2">Measurement 2 — Diameter (inches)</label>
+          <label for="r_meas2">Measurement 2 â€” Diameter (inches)</label>
           <input type="number" id="r_meas2" step="0.001" min="2" max="3" placeholder="e.g. 2.630" oninput="save('r_meas2',this.value); calcAvg()">
         </div>
       </div>
       <div class="input-row" style="margin-top:14px;">
         <div>
-          <label for="r_meas3">Measurement 3 — Diameter (inches)</label>
+          <label for="r_meas3">Measurement 3 â€” Diameter (inches)</label>
           <input type="number" id="r_meas3" step="0.001" min="2" max="3" placeholder="e.g. 2.625" oninput="save('r_meas3',this.value); calcAvg()">
         </div>
         <div>
@@ -711,14 +730,14 @@
         </div>
       </div>
       <label for="r_itf_compare">How does your measured ball compare to the ITF specification range?</label>
-      <textarea id="r_itf_compare" rows="2" placeholder="e.g. My ball is 2.63 inches, which falls within the ITF range of 2.575–2.700 inches." oninput="save('r_itf_compare',this.value)"></textarea>
+      <textarea id="r_itf_compare" rows="2" placeholder="e.g. My ball is 2.63 inches, which falls within the ITF range of 2.575â€“2.700 inches." oninput="save('r_itf_compare',this.value)"></textarea>
     </div>
 
     <!-- Functional Requirements -->
     <div class="card">
-      <div class="card-title"><div class="icon">✅</div> Functional Requirements</div>
+      <div class="card-title"><div class="icon">âœ…</div> Functional Requirements</div>
       <p style="font-size:13px; color:var(--muted); margin-bottom:14px;">
-        Functional requirements define what the design must DO — measurable, testable statements. Complete each one.
+        Functional requirements define what the design must DO â€” measurable, testable statements. Complete each one.
       </p>
 
       <label>FR-1: The holder shall constrain the tennis ball from moving more than
@@ -728,7 +747,7 @@
       <br>
       <label style="margin-top:12px;">FR-3: The ball shall be removable from the holder by hand without tools. &nbsp;<span class="badge">Fixed</span></label>
       <br>
-      <label style="margin-top:12px;">FR-4: The holder shall accommodate any ball with a diameter between <strong>2.575 in and 2.700 in</strong> (ITF spec). &nbsp;<span class="badge badge-spec">Fixed — ITF</span></label>
+      <label style="margin-top:12px;">FR-4: The holder shall accommodate any ball with a diameter between <strong>2.575 in and 2.700 in</strong> (ITF spec). &nbsp;<span class="badge badge-spec">Fixed â€” ITF</span></label>
       <br>
       <label for="r_fr5" style="margin-top:12px;">FR-5 (Your Own): <span class="label-hint">Add one functional requirement of your own</span></label>
       <input type="text" id="r_fr5" placeholder="e.g. The holder shall display the team number visibly on the front face." oninput="save('r_fr5',this.value)">
@@ -736,7 +755,7 @@
 
     <!-- Constraints -->
     <div class="card">
-      <div class="card-title"><div class="icon">📦</div> Design Constraints</div>
+      <div class="card-title"><div class="icon">ðŸ“¦</div> Design Constraints</div>
       <div class="input-row">
         <div>
           <label for="r_max_w">Max footprint width (inches)</label>
@@ -755,7 +774,7 @@
         <div>
           <label for="r_material">Planned manufacturing method</label>
           <select id="r_material" onchange="save('r_material',this.value)">
-            <option value="">Select…</option>
+            <option value="">Selectâ€¦</option>
             <option>FDM 3D Print (PLA)</option>
             <option>FDM 3D Print (PETG)</option>
             <option>FDM 3D Print (TPU/Flexible)</option>
@@ -773,7 +792,7 @@
 
     <!-- Contact Geometry Choice -->
     <div class="card">
-      <div class="card-title"><div class="icon">🎯</div> Preliminary Design Direction</div>
+      <div class="card-title"><div class="icon">ðŸŽ¯</div> Preliminary Design Direction</div>
       <label>Which contact geometry approach are you planning to explore? <span class="label-hint">(you can change this later)</span></label>
       <div class="choice-group" id="contact_type_group">
         <label class="choice-pill"><input type="radio" name="contact_type" value="V-Groove / Conical Cradle" onchange="save('contact_type',this.value)"> V-Groove / Conical Cradle</label>
@@ -786,32 +805,32 @@
 
   </div>
   <div class="nav-bar">
-    <button class="btn btn-secondary" onclick="goToPage(0)">← Back</button>
-    <button class="btn btn-primary" onclick="goToPage(2)">Next: Ideation →</button>
+    <button class="btn btn-secondary" onclick="goToPage(0)">â† Back</button>
+    <button class="btn btn-primary" onclick="goToPage(2)">Next: Ideation â†’</button>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════════
-     PAGE 2 — IDEATION
-══════════════════════════════════════════════════ -->
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     PAGE 2 â€” IDEATION
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <div class="page-outer hidden" id="page-2">
   <div class="page-inner">
-    <div class="page-tag">Page 3 of 5 · Ideation</div>
+    <div class="page-tag">Page 3 of 5 Â· Ideation</div>
     <h2 class="page-title">Develop Your Concept</h2>
     <p class="page-intro">
-      This is where engineering thinking happens — before CAD. Answer the questions below to develop and justify your concept. There are no wrong answers, but vague answers will cause problems in CAD.
+      This is where engineering thinking happens â€” before CAD. Answer the questions below to develop and justify your concept. There are no wrong answers, but vague answers will cause problems in CAD.
     </p>
 
     <div class="card">
-      <div class="card-title"><div class="icon">💡</div> Concept Description</div>
-      <label for="i_concept">Describe your design concept in 3–5 sentences. <span class="label-hint">What does it look like? How does it hold the ball? What makes it stable?</span></label>
-      <textarea id="i_concept" rows="4" placeholder="My holder uses a V-groove cradle cut at 45° on each side. The ball rests in the groove with two lines of contact, one on each angled face. The groove is cut into a rectangular base wide enough to prevent tipping…" oninput="save('i_concept',this.value)"></textarea>
+      <div class="card-title"><div class="icon">ðŸ’¡</div> Concept Description</div>
+      <label for="i_concept">Describe your design concept in 3â€“5 sentences. <span class="label-hint">What does it look like? How does it hold the ball? What makes it stable?</span></label>
+      <textarea id="i_concept" rows="4" placeholder="My holder uses a V-groove cradle cut at 45Â° on each side. The ball rests in the groove with two lines of contact, one on each angled face. The groove is cut into a rectangular base wide enough to prevent tippingâ€¦" oninput="save('i_concept',this.value)"></textarea>
     </div>
 
     <div class="card">
-      <div class="card-title"><div class="icon">📐</div> Key Dimensions — Before You Open CAD</div>
+      <div class="card-title"><div class="icon">ðŸ“</div> Key Dimensions â€” Before You Open CAD</div>
       <p style="font-size:13px; color:var(--muted); margin-bottom:14px;">
-        Estimate your critical dimensions here. You'll refine these in Onshape, but you need starting values — don't just "figure it out in CAD."
+        Estimate your critical dimensions here. You'll refine these in Onshape, but you need starting values â€” don't just "figure it out in CAD."
       </p>
       <div class="input-row">
         <div>
@@ -834,12 +853,12 @@
         </div>
       </div>
       <div class="warn-box">
-        ⚙️ <strong>Check your math:</strong> If using a ring or V-groove, the opening diameter must be less than 2.575 in (minimum ball diameter) for the ball to rest IN the holder, not on top. If using 3 pegs, use the formula from Page 1 to verify your peg circle radius.
+        âš™ï¸ <strong>Check your math:</strong> If using a ring or V-groove, the opening diameter must be less than 2.575 in (minimum ball diameter) for the ball to rest IN the holder, not on top. If using 3 pegs, use the formula from Page 1 to verify your peg circle radius.
       </div>
     </div>
 
     <div class="card">
-      <div class="card-title"><div class="icon">🔄</div> Alternatives Considered</div>
+      <div class="card-title"><div class="icon">ðŸ”„</div> Alternatives Considered</div>
       <label for="i_alt1">Alternative approach #1 you considered and why you rejected it</label>
       <textarea id="i_alt1" rows="2" placeholder="e.g. I considered a full spherical cup, but it requires more material and is harder to print without supports." oninput="save('i_alt1',this.value)"></textarea>
       <label for="i_alt2" style="margin-top:14px;">Alternative approach #2</label>
@@ -847,15 +866,15 @@
     </div>
 
     <div class="card">
-      <div class="card-title"><div class="icon">⚠️</div> Risk & Concern Identification</div>
+      <div class="card-title"><div class="icon">âš ï¸</div> Risk & Concern Identification</div>
       <label for="i_risk">What is the biggest design risk or uncertainty in your concept? <span class="label-hint">What could go wrong? What will you check first?</span></label>
       <textarea id="i_risk" rows="3" placeholder="e.g. My biggest risk is that the V-groove angle is too shallow and the ball can still roll sideways. I'll verify this by checking that the contact points are spread at least 1.5 inches apart horizontally." oninput="save('i_risk',this.value)"></textarea>
     </div>
 
     <div class="card">
-      <div class="card-title"><div class="icon">🧪</div> Test Plan</div>
+      <div class="card-title"><div class="icon">ðŸ§ª</div> Test Plan</div>
       <p style="font-size:13px; color:var(--muted); margin-bottom:10px;">How will you verify your design works before printing/building? Define your test here.</p>
-      <label for="i_test_pass">Pass Criterion: The holder passes if…</label>
+      <label for="i_test_pass">Pass Criterion: The holder passes ifâ€¦</label>
       <input type="text" id="i_test_pass" placeholder="e.g. the ball does not move more than 0.25 inches when the desk is tapped firmly on each side." oninput="save('i_test_pass',this.value)">
       <label for="i_test_how" style="margin-top:14px;">How will you perform the test?</label>
       <textarea id="i_test_how" rows="2" placeholder="e.g. Place the holder on a flat table with the ball seated. Strike the table edge with a rubber mallet and observe ball movement. Repeat from all four sides." oninput="save('i_test_how',this.value)"></textarea>
@@ -863,17 +882,17 @@
 
   </div>
   <div class="nav-bar">
-    <button class="btn btn-secondary" onclick="goToPage(1)">← Back</button>
-    <button class="btn btn-primary" onclick="goToPage(3)">Next: CAD Model →</button>
+    <button class="btn btn-secondary" onclick="goToPage(1)">â† Back</button>
+    <button class="btn btn-primary" onclick="goToPage(3)">Next: CAD Model â†’</button>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════════
-     PAGE 3 — CAD MODEL
-══════════════════════════════════════════════════ -->
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     PAGE 3 â€” CAD MODEL
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <div class="page-outer hidden" id="page-3">
   <div class="page-inner">
-    <div class="page-tag">Page 4 of 5 · CAD Model</div>
+    <div class="page-tag">Page 4 of 5 Â· CAD Model</div>
     <h2 class="page-title">Build It in Onshape</h2>
     <p class="page-intro">
       Now take your concept from the previous page and model it. Follow the guided steps below. Use the resource links if you need a refresher on any Onshape feature. When done, upload a screenshot and optionally export an STL.
@@ -881,103 +900,103 @@
 
     <!-- Resources -->
     <div class="card">
-      <div class="card-title"><div class="icon">📚</div> Onshape Quick References</div>
+      <div class="card-title"><div class="icon">ðŸ“š</div> Onshape Quick References</div>
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:6px; font-size:13px;">
         <a href="https://learn.onshape.com/learn/course/fundamentals-navigating-onshape" target="_blank" style="color:var(--orange2); text-decoration:none; display:flex; align-items:center; gap:6px; padding:10px; border:1px solid var(--border); border-radius:6px; background:#FAFCFE;">
-          🔗 Navigating Onshape (Beginner)
+          ðŸ”— Navigating Onshape (Beginner)
         </a>
         <a href="https://learn.onshape.com/learn/course/fundamentals-part-studios" target="_blank" style="color:var(--orange2); text-decoration:none; display:flex; align-items:center; gap:6px; padding:10px; border:1px solid var(--border); border-radius:6px; background:#FAFCFE;">
-          🔗 Part Studios — Sketching & Features
+          ðŸ”— Part Studios â€” Sketching & Features
         </a>
         <a href="https://learn.onshape.com/learn/course/fundamentals-onshape-drawings" target="_blank" style="color:var(--orange2); text-decoration:none; display:flex; align-items:center; gap:6px; padding:10px; border:1px solid var(--border); border-radius:6px; background:#FAFCFE;">
-          🔗 Creating Drawings in Onshape
+          ðŸ”— Creating Drawings in Onshape
         </a>
         <a href="https://learn.onshape.com/learn/course/introduction-to-cad-modeling" target="_blank" style="color:var(--orange2); text-decoration:none; display:flex; align-items:center; gap:6px; padding:10px; border:1px solid var(--border); border-radius:6px; background:#FAFCFE;">
-          🔗 Intro to CAD Modeling
+          ðŸ”— Intro to CAD Modeling
         </a>
       </div>
     </div>
 
     <!-- Steps -->
     <div class="card">
-      <div class="card-title"><div class="icon">1</div> Step 1 — Set Up Your Document</div>
+      <div class="card-title"><div class="icon">1</div> Step 1 â€” Set Up Your Document</div>
       <ol class="step-list">
         <li><div class="step-text">Go to <a href="https://www.onshape.com" target="_blank">onshape.com</a> and log in to your account. Create a new document. Name it: <strong>FEDS201_[YourLastName]_TennisBallHolder</strong></div></li>
-        <li><div class="step-text">In the Part Studio, set units to <strong>Inches</strong>: click the unit display at the bottom-right of the screen → select Inch.</div></li>
+        <li><div class="step-text">In the Part Studio, set units to <strong>Inches</strong>: click the unit display at the bottom-right of the screen â†’ select Inch.</div></li>
         <li><div class="step-text">Rename your Part Studio tab (at the bottom) to <strong>"Holder"</strong>.</div></li>
       </ol>
     </div>
 
     <div class="card">
-      <div class="card-title"><div class="icon">2</div> Step 2 — Model the Tennis Ball (Reference Body)</div>
+      <div class="card-title"><div class="icon">2</div> Step 2 â€” Model the Tennis Ball (Reference Body)</div>
       <p style="font-size:13px; color:var(--muted); margin-bottom:10px;">Model the ball first as a reference so your holder can be designed around it. You'll suppress this body for the final export.</p>
       <ol class="step-list">
-        <li><div class="step-text">Click <strong>Sketch</strong> → select the <strong>Front plane</strong>.</div></li>
+        <li><div class="step-text">Click <strong>Sketch</strong> â†’ select the <strong>Front plane</strong>.</div></li>
         <li><div class="step-text">Draw a <strong>circle</strong> centered on the origin. Set the diameter to your measured average value (from your Requirements page). Add a diameter dimension.</div></li>
-        <li><div class="step-text">Exit sketch. Click <strong>Revolve</strong> → select the circle profile → set the revolve axis to the vertical centerline → revolve 360°. This creates your reference sphere.</div></li>
-        <li><div class="step-text">Right-click the sphere in the Parts list → <strong>Rename</strong> it <em>"Tennis Ball (Reference)"</em>. Right-click again → <strong>Appearance</strong> → set it to yellow or bright green so it's easy to identify.</div></li>
+        <li><div class="step-text">Exit sketch. Click <strong>Revolve</strong> â†’ select the circle profile â†’ set the revolve axis to the vertical centerline â†’ revolve 360Â°. This creates your reference sphere.</div></li>
+        <li><div class="step-text">Right-click the sphere in the Parts list â†’ <strong>Rename</strong> it <em>"Tennis Ball (Reference)"</em>. Right-click again â†’ <strong>Appearance</strong> â†’ set it to yellow or bright green so it's easy to identify.</div></li>
       </ol>
-      <div class="info-box">💡 Using the actual ball geometry means you can visually verify that your holder makes contact at the right points. You can suppress/hide the ball body when exporting your holder STL.</div>
+      <div class="info-box">ðŸ’¡ Using the actual ball geometry means you can visually verify that your holder makes contact at the right points. You can suppress/hide the ball body when exporting your holder STL.</div>
     </div>
 
     <div class="card">
-      <div class="card-title"><div class="icon">3</div> Step 3 — Model Your Holder</div>
+      <div class="card-title"><div class="icon">3</div> Step 3 â€” Model Your Holder</div>
       <p style="font-size:13px; color:var(--muted); margin-bottom:10px;">Use your ideation dimensions from Page 3. Choose the path that matches your contact geometry approach.</p>
       <ol class="step-list">
-        <li><div class="step-text"><strong>V-Groove / Ring approach:</strong> Sketch a profile on the Right or Front plane that defines the outer shape and the cradle groove. Use <strong>Revolve</strong> to create the body, then use a <strong>Boolean Subtract</strong> if needed for the cradle cut. <a href="https://learn.onshape.com/learn/course/fundamentals-part-studios" target="_blank">Revolve tutorial →</a></div></li>
-        <li><div class="step-text"><strong>3-Post approach:</strong> Extrude a flat base first. Then sketch a <strong>circle pattern</strong> at your desired peg circle radius. Extrude the peg circles to the correct height. Use the <strong>Circular Pattern</strong> feature to replicate posts. <a href="https://learn.onshape.com/learn/article/circular-pattern" target="_blank">Circular pattern →</a></div></li>
+        <li><div class="step-text"><strong>V-Groove / Ring approach:</strong> Sketch a profile on the Right or Front plane that defines the outer shape and the cradle groove. Use <strong>Revolve</strong> to create the body, then use a <strong>Boolean Subtract</strong> if needed for the cradle cut. <a href="https://learn.onshape.com/learn/course/fundamentals-part-studios" target="_blank">Revolve tutorial â†’</a></div></li>
+        <li><div class="step-text"><strong>3-Post approach:</strong> Extrude a flat base first. Then sketch a <strong>circle pattern</strong> at your desired peg circle radius. Extrude the peg circles to the correct height. Use the <strong>Circular Pattern</strong> feature to replicate posts. <a href="https://learn.onshape.com/learn/article/circular-pattern" target="_blank">Circular pattern â†’</a></div></li>
         <li><div class="step-text"><strong>Any approach:</strong> Add a <strong>fillet</strong> (minimum R = 0.03 in) to any sharp external edges to reduce print failure risk and improve safety.</div></li>
-        <li><div class="step-text">Optional — add your team number or your name using the <strong>Text</strong> tool in a sketch, then <strong>Extrude</strong> it as a 0.04 in raised or debossed feature.</div></li>
-        <li><div class="step-text">Optional — add your team number or your name using the <strong>Text</strong> tool in a sketch, then <strong>Extrude</strong> it as a 0.04 in raised or debossed feature.</div></li>
+        <li><div class="step-text">Optional â€” add your team number or your name using the <strong>Text</strong> tool in a sketch, then <strong>Extrude</strong> it as a 0.04 in raised or debossed feature.</div></li>
+        <li><div class="step-text">Optional â€” add your team number or your name using the <strong>Text</strong> tool in a sketch, then <strong>Extrude</strong> it as a 0.04 in raised or debossed feature.</div></li>
       </ol>
     </div>
 
     <div class="card">
-      <div class="card-title"><div class="icon">3b</div> Step 3b — Verify Fit in an Assembly</div>
+      <div class="card-title"><div class="icon">3b</div> Step 3b â€” Verify Fit in an Assembly</div>
       <p style="font-size:13px; color:var(--muted); margin-bottom:10px;">
-        Don't just eyeball it in the Part Studio — assemble the parts and use mates to confirm the ball actually seats correctly. This is exactly the workflow you'll use for every subsystem on the robot.
+        Don't just eyeball it in the Part Studio â€” assemble the parts and use mates to confirm the ball actually seats correctly. This is exactly the workflow you'll use for every subsystem on the robot.
       </p>
       <div class="info-box" style="margin-bottom:14px;">
-        💡 In Onshape, an <strong>Assembly</strong> is a separate tab where you bring parts together and constrain their positions using <strong>mates</strong>. A mate defines a physical relationship between two surfaces — the same way a real bolt constrains a real bracket.
+        ðŸ’¡ In Onshape, an <strong>Assembly</strong> is a separate tab where you bring parts together and constrain their positions using <strong>mates</strong>. A mate defines a physical relationship between two surfaces â€” the same way a real bolt constrains a real bracket.
       </div>
       <ol class="step-list">
-        <li><div class="step-text">At the bottom of your document, click the <strong>＋</strong> tab button → select <strong>Assembly</strong>. Rename the tab <em>"Verification Assembly"</em>. <a href="https://learn.onshape.com/learn/course/fundamentals-onshape-assemblies" target="_blank">Onshape Assemblies intro →</a></div></li>
-        <li><div class="step-text">Click <strong>Insert</strong> (top toolbar) → select your <strong>Holder</strong> part from the Parts list → click to place it. Then insert the <strong>Tennis Ball (Reference)</strong> part the same way. Click the green checkmark to close the Insert panel.</div></li>
-        <li><div class="step-text">Right-click the <strong>Holder</strong> in the assembly tree → select <strong>Fix</strong>. This locks the holder to the origin so it doesn't move when you mate the ball to it.</div></li>
-        <li><div class="step-text">Click <strong>Mate</strong> in the toolbar → select <strong>Tangent mate</strong>. Click the <strong>outer spherical surface of the ball</strong> as the first selection, then click one of the <strong>contact surfaces of your holder</strong> (the angled face, post top, or ring edge) as the second. Click the green checkmark to apply.</div></li>
+        <li><div class="step-text">At the bottom of your document, click the <strong>ï¼‹</strong> tab button â†’ select <strong>Assembly</strong>. Rename the tab <em>"Verification Assembly"</em>. <a href="https://learn.onshape.com/learn/course/fundamentals-onshape-assemblies" target="_blank">Onshape Assemblies intro â†’</a></div></li>
+        <li><div class="step-text">Click <strong>Insert</strong> (top toolbar) â†’ select your <strong>Holder</strong> part from the Parts list â†’ click to place it. Then insert the <strong>Tennis Ball (Reference)</strong> part the same way. Click the green checkmark to close the Insert panel.</div></li>
+        <li><div class="step-text">Right-click the <strong>Holder</strong> in the assembly tree â†’ select <strong>Fix</strong>. This locks the holder to the origin so it doesn't move when you mate the ball to it.</div></li>
+        <li><div class="step-text">Click <strong>Mate</strong> in the toolbar â†’ select <strong>Tangent mate</strong>. Click the <strong>outer spherical surface of the ball</strong> as the first selection, then click one of the <strong>contact surfaces of your holder</strong> (the angled face, post top, or ring edge) as the second. Click the green checkmark to apply.</div></li>
         <li><div class="step-text"><strong>Interpret the result:</strong>
-          <br>✅ <em>Ball seats inside the holder with the equator above the rim</em> — geometry is correct.
-          <br>⚠️ <em>Mate solves but ball floats above the holder</em> — opening is too large; the ball is resting on the outer rim edge rather than dropping in. Reduce your opening diameter.
-          <br>❌ <em>Mate fails or ball intersects (clips through) the holder</em> — opening is too small or geometry conflict. Review your cradle dimensions.
+          <br>âœ… <em>Ball seats inside the holder with the equator above the rim</em> â€” geometry is correct.
+          <br>âš ï¸ <em>Mate solves but ball floats above the holder</em> â€” opening is too large; the ball is resting on the outer rim edge rather than dropping in. Reduce your opening diameter.
+          <br>âŒ <em>Mate fails or ball intersects (clips through) the holder</em> â€” opening is too small or geometry conflict. Review your cradle dimensions.
         </div></li>
         <li><div class="step-text">If you needed to change any dimensions, go back to the <strong>Part Studio</strong>, edit the sketch or feature dimension, and the Assembly will update automatically. Re-check the mate result.</div></li>
-        <li><div class="step-text">When the assembly looks correct, set a good view angle (3/4 isometric works well) — this is the screenshot you'll upload below.</div></li>
+        <li><div class="step-text">When the assembly looks correct, set a good view angle (3/4 isometric works well) â€” this is the screenshot you'll upload below.</div></li>
       </ol>
       <div class="warn-box">
-        ⚙️ <strong>Tangent mate tip:</strong> For a V-groove or concave cup, select the <em>angled face or curved interior surface</em> — not the flat top of the holder. For a 3-post design, apply a Tangent mate to each post top individually (three mates total). The ball will fully constrain after enough mates are applied.
+        âš™ï¸ <strong>Tangent mate tip:</strong> For a V-groove or concave cup, select the <em>angled face or curved interior surface</em> â€” not the flat top of the holder. For a 3-post design, apply a Tangent mate to each post top individually (three mates total). The ball will fully constrain after enough mates are applied.
       </div>
     </div>
 
     <div class="card">
-      <div class="card-title"><div class="icon">4</div> Step 4 — Export Your STL</div>
-      <div class="info-box" style="margin-bottom:14px;">📋 Export only the <strong>holder part</strong> — not the reference ball.</div>
+      <div class="card-title"><div class="icon">4</div> Step 4 â€” Export Your STL</div>
+      <div class="info-box" style="margin-bottom:14px;">ðŸ“‹ Export only the <strong>holder part</strong> â€” not the reference ball.</div>
       <ol class="step-list">
-        <li><div class="step-text">In the Part Studio, <strong>right-click the holder part</strong> in the Parts panel (left sidebar) → Select <strong>"Export…"</strong></div></li>
-        <li><div class="step-text">In the export dialog: Format → <strong>STL</strong>. Units → <strong>Inch</strong>. Resolution → <strong>Fine</strong>. Click <strong>Export</strong>. The file downloads to your computer.</div></li>
+        <li><div class="step-text">In the Part Studio, <strong>right-click the holder part</strong> in the Parts panel (left sidebar) â†’ Select <strong>"Exportâ€¦"</strong></div></li>
+        <li><div class="step-text">In the export dialog: Format â†’ <strong>STL</strong>. Units â†’ <strong>Inch</strong>. Resolution â†’ <strong>Fine</strong>. Click <strong>Export</strong>. The file downloads to your computer.</div></li>
         <li><div class="step-text">Name the file: <strong>FEDS201_[LastName]_TennisBallHolder.stl</strong></div></li>
-        <li><div class="step-text">You can also share a link to your Onshape document: click <strong>Share</strong> (top right) → set access to <em>"Anyone with the link can view"</em> → copy the link and paste it in the field below.</div></li>
+        <li><div class="step-text">You can also share a link to your Onshape document: click <strong>Share</strong> (top right) â†’ set access to <em>"Anyone with the link can view"</em> â†’ copy the link and paste it in the field below.</div></li>
       </ol>
     </div>
 
     <!-- Upload Section -->
     <div class="card">
-      <div class="card-title"><div class="icon">📸</div> Upload Your CAD Screenshot <span class="required-star">*</span></div>
+      <div class="card-title"><div class="icon">ðŸ“¸</div> Upload Your CAD Screenshot <span class="required-star">*</span></div>
       <p style="font-size:13px; color:var(--muted); margin-bottom:6px;">Take a screenshot from your <strong>Verification Assembly</strong> showing the ball mated and seated in the holder. The best view is a 3/4 isometric perspective with both parts visible. If your assembly mate failed and you had to adjust dimensions, capture the corrected final result.</p>
       <div class="upload-zone" id="uploadZone">
         <input type="file" id="cadImageInput" accept="image/*" onchange="handleImageUpload(this)">
-        <div class="upload-icon">🖼️</div>
+        <div class="upload-icon">ðŸ–¼ï¸</div>
         <p><strong>Click to upload</strong> or drag and drop your screenshot here</p>
-        <p>PNG, JPG, or GIF · Max 10MB</p>
+        <p>PNG, JPG, or GIF Â· Max 10MB</p>
       </div>
       <img id="uploadPreview" class="upload-preview" alt="Your CAD screenshot">
       <p id="uploadFileName" style="font-size:12px; color:var(--muted); margin-top:8px; display:none;"></p>
@@ -985,23 +1004,159 @@
       <label for="c_onshape_link" style="margin-top:18px;">Onshape Document Link <span class="label-hint">(paste share link here)</span></label>
       <input type="text" id="c_onshape_link" placeholder="https://cad.onshape.com/documents/..." oninput="save('c_onshape_link',this.value)">
 
-      <label for="c_cad_notes" style="margin-top:14px;">CAD Notes — any decisions you made while modeling that differed from your ideation plan</label>
-      <textarea id="c_cad_notes" rows="3" placeholder="e.g. I changed the V-groove angle from 45° to 60° because the ball was sitting too high at 45°." oninput="save('c_cad_notes',this.value)"></textarea>
+      <label for="c_cad_notes" style="margin-top:14px;">CAD Notes â€” any decisions you made while modeling that differed from your ideation plan</label>
+      <textarea id="c_cad_notes" rows="3" placeholder="e.g. I changed the V-groove angle from 45Â° to 60Â° because the ball was sitting too high at 45Â°." oninput="save('c_cad_notes',this.value)"></textarea>
     </div>
 
   </div>
   <div class="nav-bar">
-    <button class="btn btn-secondary" onclick="goToPage(2)">← Back</button>
-    <button class="btn btn-primary" onclick="goToPage(4)">Next: Summary →</button>
+    <button class="btn btn-secondary" onclick="goToPage(2)">â† Back</button>
+    <button class="btn btn-primary" onclick="goToPage(4)">Next: Badge Assessment â†’</button>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════════
-     PAGE 4 — SUMMARY + REPORT
-══════════════════════════════════════════════════ -->
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     PAGE 4 â€” SUMMARY + REPORT
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     PAGE 4 â€” BADGE SELF-ASSESSMENT
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <div class="page-outer hidden" id="page-4">
   <div class="page-inner">
-    <div class="page-tag">Page 5 of 5 · Summary & Report</div>
+    <div class="page-tag">Page 5 of 6 Â· FED Badge Self-Assessment</div>
+    <h2 class="page-title">How Did You Do?</h2>
+    <p class="page-intro">
+      Before generating your report, honestly assess your performance against each badge available from this challenge. This is not graded â€” it feeds into your PPTX for your mentor to review. Be specific. Vague self-assessments result in delayed badge approval.
+    </p>
+
+    <div class="card">
+      <div class="card-title"><div class="icon">ðŸ…</div> Badges Available from Challenge 01</div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">
+        Three FED Badges are available from this challenge. To earn each one at Rookie level you must demonstrate you understand the concept â€” not just that you completed the activity. Read each rubric carefully before scoring yourself.
+      </p>
+
+      <!-- Badge 1: Problem Definition -->
+      <div style="background:var(--offwhite);border-left:4px solid #CC2229;border-radius:0 8px 8px 0;padding:16px 20px;margin-bottom:16px;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+          <div style="width:36px;height:36px;background:#CC2229;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">ðŸ”</div>
+          <div>
+            <div style="font-family:Cambria,serif;font-size:16px;font-weight:700;color:var(--navy);">Problem Definition <span style="background:#CC2229;color:#fff;font-size:10px;padding:2px 8px;border-radius:10px;vertical-align:middle;margin-left:6px;">ROOKIE</span></div>
+            <div style="font-size:12px;color:var(--muted);">Can you define a design problem in engineering terms?</div>
+          </div>
+        </div>
+        <div style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:12px 14px;margin-bottom:10px;font-size:13px;">
+          <strong style="color:var(--navy);">Rookie rubric â€” to earn this badge you must demonstrate:</strong>
+          <ul style="margin-top:8px;padding-left:18px;color:#4A6070;line-height:1.9;">
+            <li>You can state the problem in engineering terms (not just "it rolls off the desk")</li>
+            <li>You identified at least one measurable constraint (ball diameter, desk surface, etc.)</li>
+            <li>You wrote at least one requirement that starts with "The design shallâ€¦" and includes a number</li>
+            <li>You can explain the difference between a stable and unstable equilibrium</li>
+          </ul>
+        </div>
+        <label for="b_prob_self">Your self-assessment <span style="color:var(--orange);font-weight:400;font-size:12px;">â€” be specific, reference your actual work</span></label>
+        <textarea id="b_prob_self" rows="3" placeholder="e.g. I defined the problem as: a 2.63 inch diameter sphere with no stable resting position on a flat surface. I wrote FR-1 as 'The design shall prevent the ball from moving more than 0.25 inches in any horizontal direction.' I can explain that a sphere on a flat surface is in unstable equilibrium because any small force creates a net torque with no restoring force." oninput="save('b_prob_self',this.value)"></textarea>
+        <div style="margin-top:10px;">
+          <label style="margin-top:0;">Self-assessment score</label>
+          <div style="display:flex;gap:8px;margin-top:6px;flex-wrap:wrap;">
+            <label style="margin:0;display:flex;align-items:center;gap:6px;padding:7px 14px;border:1.5px solid var(--border);border-radius:20px;cursor:pointer;font-size:13px;font-weight:400;" id="prob_not_yet_lbl">
+              <input type="radio" name="b_prob_score" value="Not yet" style="width:auto;" onchange="save('b_prob_score',this.value);highlightScore('prob',this.value)"> Not yet â€” I need more practice
+            </label>
+            <label style="margin:0;display:flex;align-items:center;gap:6px;padding:7px 14px;border:1.5px solid var(--border);border-radius:20px;cursor:pointer;font-size:13px;font-weight:400;" id="prob_partial_lbl">
+              <input type="radio" name="b_prob_score" value="Partial" style="width:auto;" onchange="save('b_prob_score',this.value);highlightScore('prob',this.value)"> Partial â€” I got some of it
+            </label>
+            <label style="margin:0;display:flex;align-items:center;gap:6px;padding:7px 14px;border:1.5px solid #CC2229;background:#FFF0F0;border-radius:20px;cursor:pointer;font-size:13px;font-weight:400;" id="prob_ready_lbl">
+              <input type="radio" name="b_prob_score" value="Ready" style="width:auto;" onchange="save('b_prob_score',this.value);highlightScore('prob',this.value)"> Ready â€” I can demonstrate all four items above
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Badge 2: Requirements Engineering -->
+      <div style="background:var(--offwhite);border-left:4px solid #CC2229;border-radius:0 8px 8px 0;padding:16px 20px;margin-bottom:16px;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+          <div style="width:36px;height:36px;background:#CC2229;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">ðŸ“‹</div>
+          <div>
+            <div style="font-family:Cambria,serif;font-size:16px;font-weight:700;color:var(--navy);">Requirements Engineering <span style="background:#CC2229;color:#fff;font-size:10px;padding:2px 8px;border-radius:10px;vertical-align:middle;margin-left:6px;">ROOKIE</span></div>
+            <div style="font-size:12px;color:var(--muted);">Can you write testable, measurable requirements?</div>
+          </div>
+        </div>
+        <div style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:12px 14px;margin-bottom:10px;font-size:13px;">
+          <strong style="color:var(--navy);">Rookie rubric:</strong>
+          <ul style="margin-top:8px;padding-left:18px;color:#4A6070;line-height:1.9;">
+            <li>You wrote at least 4 requirements using "The design shallâ€¦" format</li>
+            <li>At least 2 of your requirements include a measurable number or dimension</li>
+            <li>You can explain the difference between a functional requirement and a constraint</li>
+            <li>You identified at least one requirement from your measurements (not just guessed)</li>
+          </ul>
+        </div>
+        <label for="b_req_self">Your self-assessment</label>
+        <textarea id="b_req_self" rows="3" placeholder="e.g. I wrote 5 requirements. FR-1 uses my measured ball diameter of 2.63 inches. FR-2 requires the holder not to tip â€” this came from testing that the CoG must stay within the base footprint. I understand that FR-3 (removable by hand) is a functional requirement while the max footprint size is a constraint." oninput="save('b_req_self',this.value)"></textarea>
+        <div style="margin-top:10px;">
+          <label style="margin-top:0;">Self-assessment score</label>
+          <div style="display:flex;gap:8px;margin-top:6px;flex-wrap:wrap;">
+            <label style="margin:0;display:flex;align-items:center;gap:6px;padding:7px 14px;border:1.5px solid var(--border);border-radius:20px;cursor:pointer;font-size:13px;font-weight:400;"><input type="radio" name="b_req_score" value="Not yet" style="width:auto;" onchange="save('b_req_score',this.value)"> Not yet</label>
+            <label style="margin:0;display:flex;align-items:center;gap:6px;padding:7px 14px;border:1.5px solid var(--border);border-radius:20px;cursor:pointer;font-size:13px;font-weight:400;"><input type="radio" name="b_req_score" value="Partial" style="width:auto;" onchange="save('b_req_score',this.value)"> Partial</label>
+            <label style="margin:0;display:flex;align-items:center;gap:6px;padding:7px 14px;border:1.5px solid #CC2229;background:#FFF0F0;border-radius:20px;cursor:pointer;font-size:13px;font-weight:400;"><input type="radio" name="b_req_score" value="Ready" style="width:auto;" onchange="save('b_req_score',this.value)"> Ready â€” I can demonstrate all four above</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Badge 3: CAD Modeling -->
+      <div style="background:var(--offwhite);border-left:4px solid var(--steel);border-radius:0 8px 8px 0;padding:16px 20px;margin-bottom:16px;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+          <div style="width:36px;height:36px;background:var(--steel);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">ðŸ–¥ï¸</div>
+          <div>
+            <div style="font-family:Cambria,serif;font-size:16px;font-weight:700;color:var(--navy);">CAD Modeling <span style="background:var(--steel);color:#fff;font-size:10px;padding:2px 8px;border-radius:10px;vertical-align:middle;margin-left:6px;">ROOKIE</span></div>
+            <div style="font-size:12px;color:var(--muted);">Can you create a basic part and assembly in Onshape?</div>
+          </div>
+        </div>
+        <div style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:12px 14px;margin-bottom:10px;font-size:13px;">
+          <strong style="color:var(--navy);">Rookie rubric:</strong>
+          <ul style="margin-top:8px;padding-left:18px;color:#4A6070;line-height:1.9;">
+            <li>You created a Part Studio with at least one sketch and one extrude or revolve feature</li>
+            <li>You modeled the reference sphere (tennis ball) using the Revolve tool</li>
+            <li>You created an Assembly and applied at least one mate</li>
+            <li>You used a Tangent mate to verify the ball seats in your holder</li>
+            <li>You exported an STL from Onshape</li>
+          </ul>
+        </div>
+        <label for="b_cad_self">Your self-assessment</label>
+        <textarea id="b_cad_self" rows="3" placeholder="e.g. I created the ball using a revolve on the Front plane. I modeled a V-groove holder with two extrudes and a chamfer. In the assembly I applied a Fastened mate for the holder and a Tangent mate for the ball â€” the ball settled into the groove correctly. I exported the STL but had to redo it once because I forgot to suppress the reference ball first." oninput="save('b_cad_self',this.value)"></textarea>
+        <div style="margin-top:10px;">
+          <label style="margin-top:0;">Self-assessment score</label>
+          <div style="display:flex;gap:8px;margin-top:6px;flex-wrap:wrap;">
+            <label style="margin:0;display:flex;align-items:center;gap:6px;padding:7px 14px;border:1.5px solid var(--border);border-radius:20px;cursor:pointer;font-size:13px;font-weight:400;"><input type="radio" name="b_cad_score" value="Not yet" style="width:auto;" onchange="save('b_cad_score',this.value)"> Not yet</label>
+            <label style="margin:0;display:flex;align-items:center;gap:6px;padding:7px 14px;border:1.5px solid var(--border);border-radius:20px;cursor:pointer;font-size:13px;font-weight:400;"><input type="radio" name="b_cad_score" value="Partial" style="width:auto;" onchange="save('b_cad_score',this.value)"> Partial</label>
+            <label style="margin:0;display:flex;align-items:center;gap:6px;padding:7px 14px;border:1.5px solid var(--steel);background:#EDF3F8;border-radius:20px;cursor:pointer;font-size:13px;font-weight:400;"><input type="radio" name="b_cad_score" value="Ready" style="width:auto;" onchange="save('b_cad_score',this.value)"> Ready â€” I can demonstrate all five above</label>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /card -->
+
+    <div class="card">
+      <div class="card-title"><div class="icon">ðŸ’¬</div> Overall Reflection for Mentor</div>
+      <label for="b_overall">What is the one thing from this challenge you feel least confident about?</label>
+      <textarea id="b_overall" rows="2" placeholder="e.g. I'm least confident about the Tangent mate â€” it worked but I'm not sure I fully understand why the ball settled where it did vs. just sitting on top of the rim." oninput="save('b_overall',this.value)"></textarea>
+      <label for="b_question" style="margin-top:14px;">What question do you have for your mentor?</label>
+      <textarea id="b_question" rows="2" placeholder="e.g. How would I design the holder differently if I needed to accommodate balls of different sizes? Would I add a configuration parameter?" oninput="save('b_question',this.value)"></textarea>
+    </div>
+
+    <div class="info-box">
+      ðŸ“Œ <strong>What happens next:</strong> Your self-assessment feeds into your PPTX report as a dedicated slide. Submit the PPTX to your mentor. Your mentor reviews your work and self-assessment, then either approves the badge or gives you specific feedback on what to improve before resubmitting.
+    </div>
+
+  </div>
+  <div class="nav-bar">
+    <button class="btn btn-secondary" onclick="goToPage(3)">â† Back to CAD</button>
+    <button class="btn btn-primary" onclick="goToPage(5)">Next: Summary â†’</button>
+  </div>
+</div>
+
+<div class="page-outer hidden" id="page-5">
+  <div class="page-inner">
+    <div class="page-tag">Page 6 of 6 Â· Summary & Report</div>
     <h2 class="page-title">Review Your Work</h2>
     <p class="page-intro">
       Review all your entries below. When you're satisfied, click <strong>Generate Report</strong> to download a PowerPoint summary of your design challenge.
@@ -1009,55 +1164,72 @@
 
     <!-- Summary Sections -->
     <div class="card">
-      <div class="card-title"><div class="icon">👤</div> Student & Measurements</div>
+      <div class="card-title"><div class="icon">ðŸ‘¤</div> Student & Measurements</div>
       <div id="summary-student"></div>
     </div>
 
     <div class="card">
-      <div class="card-title"><div class="icon">✅</div> Requirements</div>
+      <div class="card-title"><div class="icon">âœ…</div> Requirements</div>
       <div id="summary-requirements"></div>
     </div>
 
     <div class="card">
-      <div class="card-title"><div class="icon">💡</div> Ideation</div>
+      <div class="card-title"><div class="icon">ðŸ’¡</div> Ideation</div>
       <div id="summary-ideation"></div>
     </div>
 
     <div class="card">
-      <div class="card-title"><div class="icon">🖥️</div> CAD Model</div>
+      <div class="card-title"><div class="icon">ðŸ–¥ï¸</div> CAD Model</div>
       <div id="summary-cad"></div>
     </div>
 
     <div class="card">
-      <div class="card-title"><div class="icon">🎯</div> Final Reflection</div>
+      <div class="card-title"><div class="icon">ðŸŽ¯</div> Final Reflection</div>
       <label for="s_reflection">What is the single most important engineering decision you made in this challenge, and why?</label>
-      <textarea id="s_reflection" rows="3" placeholder="The most important decision was choosing the V-groove angle, because it directly determines how deep the ball sits and how stable it is. I chose 60° because…" oninput="save('s_reflection',this.value)"></textarea>
+      <textarea id="s_reflection" rows="3" placeholder="The most important decision was choosing the V-groove angle, because it directly determines how deep the ball sits and how stable it is. I chose 60Â° becauseâ€¦" oninput="save('s_reflection',this.value)"></textarea>
       <label for="s_next" style="margin-top:14px;">If you had more time, what would you change or improve?</label>
       <textarea id="s_next" rows="2" placeholder="I would add rubber inserts at the contact points to increase friction and prevent the ball from sliding on a smooth desk." oninput="save('s_next',this.value)"></textarea>
     </div>
 
     <div style="text-align:center; margin-top:28px;">
       <button class="btn btn-success" onclick="generateReport()">
-        ⬇ Generate Report (.pptx)
+        â¬‡ Generate Report (.pptx)
       </button>
       <p style="font-size:12px; color:var(--muted); margin-top:10px;">Downloads a PowerPoint presentation with all your answers and your CAD image.</p>
     </div>
 
   </div>
   <div class="nav-bar">
-    <button class="btn btn-secondary" onclick="goToPage(3)">← Back to CAD</button>
+    <button class="btn btn-secondary" onclick="goToPage(4)">â† Back to Badges</button>
     <div></div>
   </div>
 </div>
 
 <script>
-// ══════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 //  STATE MANAGEMENT (localStorage)
-// ══════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 const STORE = 'feds_challenge1_';
 let currentPage = 0;
 let cadImageDataURL = null;
+
+function highlightScore(domain, val){
+  // Update pill styling when a score is selected
+  const pills = document.querySelectorAll(`input[name="b_${domain}_score"]`);
+  pills.forEach(r => {
+    const lbl = r.parentElement;
+    if(r.value === val){
+      lbl.style.borderColor = val==='Ready'?'var(--green)':val==='Partial'?'var(--orange)':'var(--red)';
+      lbl.style.background = val==='Ready'?'#E8F8EF':val==='Partial'?'#FFF3E0':'#FFF0F0';
+      lbl.style.fontWeight = '700';
+    } else {
+      lbl.style.borderColor = 'var(--border)';
+      lbl.style.background = '';
+      lbl.style.fontWeight = '400';
+    }
+  });
+}
 
 function save(key, value) {
   localStorage.setItem(STORE + key, value);
@@ -1098,6 +1270,11 @@ function restoreAll() {
   if (fr1 && !load('r_fr1')) fr1.value = '0.25';
 
   calcAvg();
+  // Restore badge radio buttons
+  ['b_prob_score','b_req_score','b_cad_score'].forEach(name => {
+    const val = load(name);
+    if(val) { const r = document.querySelector(`input[name="${name}"][value="${val}"]`); if(r) r.checked = true; }
+  });
 
   // Restore image
   const img = loadImage();
@@ -1107,20 +1284,20 @@ function restoreAll() {
     preview.src = img;
     preview.style.display = 'block';
     document.getElementById('uploadFileName').style.display = 'block';
-    document.getElementById('uploadFileName').textContent = '✅ Image loaded from previous session';
+    document.getElementById('uploadFileName').textContent = 'âœ… Image loaded from previous session';
   }
 }
 
-// ══════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 //  NAVIGATION
-// ══════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 function goToPage(n) {
   document.getElementById('page-' + currentPage).classList.add('hidden');
   currentPage = n;
   document.getElementById('page-' + currentPage).classList.remove('hidden');
   updateProgress();
-  if (n === 4) buildSummary();
+  if (n === 5) buildSummary();
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
@@ -1132,9 +1309,9 @@ function updateProgress() {
   });
 }
 
-// ══════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 //  CALCULATIONS
-// ══════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 function calcAvg() {
   const v1 = parseFloat(document.getElementById('r_meas1').value);
@@ -1153,9 +1330,9 @@ function calcAvg() {
   }
 }
 
-// ══════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 //  IMAGE UPLOAD
-// ══════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 function handleImageUpload(input) {
   const file = input.files[0];
@@ -1169,14 +1346,14 @@ function handleImageUpload(input) {
     preview.style.display = 'block';
     const fn = document.getElementById('uploadFileName');
     fn.style.display = 'block';
-    fn.textContent = '✅ Uploaded: ' + file.name;
+    fn.textContent = 'âœ… Uploaded: ' + file.name;
   };
   reader.readAsDataURL(file);
 }
 
-// ══════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 //  SUMMARY BUILDER
-// ══════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 function buildSummary() {
   const rows = (items) => items.map(([q,a]) =>
@@ -1198,7 +1375,7 @@ function buildSummary() {
   document.getElementById('summary-requirements').innerHTML = rows([
     ['FR-1 tolerance (in)', load('r_fr1')],
     ['FR-5 (custom)', load('r_fr5')],
-    ['Max footprint W×D', load('r_max_w') && load('r_max_d') ? load('r_max_w')+'" × '+load('r_max_d')+'"' : ''],
+    ['Max footprint WÃ—D', load('r_max_w') && load('r_max_d') ? load('r_max_w')+'" Ã— '+load('r_max_d')+'"' : ''],
     ['Max height', load('r_max_h') ? load('r_max_h')+' in' : ''],
     ['Manufacturing', load('r_material')],
     ['Other constraints', load('r_constraints_extra')],
@@ -1209,7 +1386,7 @@ function buildSummary() {
     ['Concept description', load('i_concept')],
     ['Opening diameter', load('i_opening') ? load('i_opening')+' in' : ''],
     ['Depth in holder', load('i_depth') ? load('i_depth')+' in' : ''],
-    ['Base W×D', load('i_base_w') && load('i_base_d') ? load('i_base_w')+'" × '+load('i_base_d')+'"' : ''],
+    ['Base WÃ—D', load('i_base_w') && load('i_base_d') ? load('i_base_w')+'" Ã— '+load('i_base_d')+'"' : ''],
     ['Alt. rejected #1', load('i_alt1')],
     ['Alt. rejected #2', load('i_alt2')],
     ['Biggest risk', load('i_risk')],
@@ -1218,7 +1395,7 @@ function buildSummary() {
   ]);
 
   let cadHTML = rows([
-    ['Onshape link', load('c_onshape_link') ? `<a href="${load('c_onshape_link')}" target="_blank">Open document →</a>` : ''],
+    ['Onshape link', load('c_onshape_link') ? `<a href="${load('c_onshape_link')}" target="_blank">Open document â†’</a>` : ''],
     ['CAD notes', load('c_cad_notes')],
   ]);
   if (cadImageDataURL) {
@@ -1227,13 +1404,13 @@ function buildSummary() {
   document.getElementById('summary-cad').innerHTML = cadHTML;
 }
 
-// ══════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 //  PPTX REPORT GENERATOR
-// ══════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 async function generateReport() {
   const btn = document.querySelector('.btn-success');
-  btn.textContent = '⏳ Building presentation…';
+  btn.textContent = 'â³ Building presentationâ€¦';
   btn.disabled = true;
 
   try {
@@ -1256,14 +1433,14 @@ async function generateReport() {
     const name = load('r_name') || 'Student';
     const date = load('r_date') || '';
 
-    // ── Slide 1: Title ──────────────────────────────
+    // â”€â”€ Slide 1: Title â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     let sl = pptx.addSlide();
     sl.background = { color: C.navy };
 
     // Orange accent bar left
     sl.addShape(pptx.ShapeType.rect, { x:0, y:0, w:0.18, h:7.5, fill:{color:C.orange}, line:{color:C.orange} });
 
-    sl.addText('FEDS 201 · MECHANICAL DESIGN', {
+    sl.addText('FEDS 201 Â· MECHANICAL DESIGN', {
       x:0.4, y:1.2, w:12.5, h:0.4,
       fontSize:12, color:C.orange, bold:true, charSpacing:3,
       fontFace:'Calibri'
@@ -1292,13 +1469,13 @@ async function generateReport() {
     const role = load('r_role');
     const onshape = load('r_onshape');
     if (role || onshape) {
-      sl.addText((role ? role : '') + (role && onshape ? '  ·  ' : '') + (onshape ? onshape : ''), {
+      sl.addText((role ? role : '') + (role && onshape ? '  Â·  ' : '') + (onshape ? onshape : ''), {
         x:0.4, y:5.2, w:12, h:0.4,
         fontSize:14, color:C.muted, fontFace:'Calibri'
       });
     }
 
-    // ── Slide 2: Measurements ───────────────────────
+    // â”€â”€ Slide 2: Measurements â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     sl = pptx.addSlide();
     sl.background = { color: C.offwh };
     sl.addShape(pptx.ShapeType.rect, { x:0, y:0, w:0.18, h:7.5, fill:{color:C.orange}, line:{color:C.orange} });
@@ -1315,10 +1492,10 @@ async function generateReport() {
 
     // Measurement boxes
     const measVals = [
-      ['Measurement 1', load('r_meas1') ? load('r_meas1') + '"' : '—'],
-      ['Measurement 2', load('r_meas2') ? load('r_meas2') + '"' : '—'],
-      ['Measurement 3', load('r_meas3') ? load('r_meas3') + '"' : '—'],
-      ['Average', load('r_avg') || '—'],
+      ['Measurement 1', load('r_meas1') ? load('r_meas1') + '"' : 'â€”'],
+      ['Measurement 2', load('r_meas2') ? load('r_meas2') + '"' : 'â€”'],
+      ['Measurement 3', load('r_meas3') ? load('r_meas3') + '"' : 'â€”'],
+      ['Average', load('r_avg') || 'â€”'],
     ];
     measVals.forEach(([label, val], i) => {
       const x = 0.4 + i * 3.1;
@@ -1336,7 +1513,7 @@ async function generateReport() {
 
     // ITF Spec bar
     sl.addShape(pptx.ShapeType.rect, { x:0.4, y:2.9, w:12.5, h:0.85, fill:{color:C.steel}, line:{color:C.steel}, rectRadius:0.08 });
-    sl.addText('ITF Specification Range:  2.575" (min)  —  2.700" (max)     |     Nominal design target: 2.63"', {
+    sl.addText('ITF Specification Range:  2.575" (min)  â€”  2.700" (max)     |     Nominal design target: 2.63"', {
       x:0.6, y:2.95, w:12.2, h:0.5,
       fontSize:16, color:C.white, fontFace:'Calibri', bold:true
     });
@@ -1347,7 +1524,7 @@ async function generateReport() {
       fontSize:15, color:C.text, fontFace:'Calibri', wrap:true
     });
 
-    // ── Slide 3: Requirements ───────────────────────
+    // â”€â”€ Slide 3: Requirements â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     sl = pptx.addSlide();
     sl.background = { color: C.offwh };
     sl.addShape(pptx.ShapeType.rect, { x:0, y:0, w:0.18, h:7.5, fill:{color:C.orange}, line:{color:C.orange} });
@@ -1365,7 +1542,7 @@ async function generateReport() {
       ['FR-1', `Ball must not move more than ${load('r_fr1') || '0.25'}" in any direction`],
       ['FR-2', 'Holder supports full ball weight without deforming or tipping'],
       ['FR-3', 'Ball removable by hand without tools'],
-      ['FR-4', 'Accepts all ITF balls: 2.575" – 2.700" diameter'],
+      ['FR-4', 'Accepts all ITF balls: 2.575" â€“ 2.700" diameter'],
       ['FR-5', load('r_fr5') || '(not defined)'],
     ];
     reqs.forEach(([id, text], i) => {
@@ -1388,7 +1565,7 @@ async function generateReport() {
     sl.addText(cLine || '(no constraints specified)', { x:0.65, y:6.25, w:12, h:0.4, fontSize:14, color:C.white, fontFace:'Calibri' });
     sl.addText('Contact geometry: ' + (load('contact_type') || '(not selected)'), { x:0.65, y:6.65, w:12, h:0.4, fontSize:14, color:C.muted, fontFace:'Calibri' });
 
-    // ── Slide 4: Ideation ───────────────────────────
+    // â”€â”€ Slide 4: Ideation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     sl = pptx.addSlide();
     sl.background = { color: C.offwh };
     sl.addShape(pptx.ShapeType.rect, { x:0, y:0, w:0.18, h:7.5, fill:{color:C.orange}, line:{color:C.orange} });
@@ -1408,14 +1585,14 @@ async function generateReport() {
     sl.addText('BIGGEST DESIGN RISK', { x:0.6, y:4.43, w:7.4, h:0.3, fontSize:10, color:C.orange, bold:true, charSpacing:1.5, fontFace:'Calibri' });
     sl.addText(load('i_risk') || '(not answered)', { x:0.6, y:4.8, w:7.4, h:0.9, fontSize:13, color:C.text, fontFace:'Calibri', wrap:true });
 
-    // Right column — key dimensions
+    // Right column â€” key dimensions
     sl.addShape(pptx.ShapeType.rect, { x:8.4, y:1.1, w:4.5, h:3.1, fill:{color:C.navy}, line:{color:C.navy}, rectRadius:0.08 });
     sl.addText('KEY DIMENSIONS', { x:8.6, y:1.18, w:4.1, h:0.3, fontSize:10, color:C.orange, bold:true, charSpacing:1.5, fontFace:'Calibri' });
     const dims = [
-      ['Opening diam.', load('i_opening') ? load('i_opening')+'"' : '—'],
-      ['Depth in holder', load('i_depth') ? load('i_depth')+'"' : '—'],
-      ['Base W', load('i_base_w') ? load('i_base_w')+'"' : '—'],
-      ['Base D', load('i_base_d') ? load('i_base_d')+'"' : '—'],
+      ['Opening diam.', load('i_opening') ? load('i_opening')+'"' : 'â€”'],
+      ['Depth in holder', load('i_depth') ? load('i_depth')+'"' : 'â€”'],
+      ['Base W', load('i_base_w') ? load('i_base_w')+'"' : 'â€”'],
+      ['Base D', load('i_base_d') ? load('i_base_d')+'"' : 'â€”'],
     ];
     dims.forEach(([label, val], i) => {
       sl.addText(label, { x:8.6, y:1.65+i*0.55, w:2.2, h:0.45, fontSize:12, color:C.muted, fontFace:'Calibri' });
@@ -1427,16 +1604,16 @@ async function generateReport() {
     sl.addText('PASS CRITERION', { x:8.6, y:4.43, w:4.1, h:0.3, fontSize:10, color:C.orange, bold:true, charSpacing:1.5, fontFace:'Calibri' });
     sl.addText(load('i_test_pass') || '(not defined)', { x:8.6, y:4.8, w:4.1, h:0.9, fontSize:12, color:C.text, fontFace:'Calibri', wrap:true });
 
-    // ── Slide 5: CAD Image ──────────────────────────
+    // â”€â”€ Slide 5: CAD Image â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     sl = pptx.addSlide();
     sl.background = { color: C.navy };
     sl.addShape(pptx.ShapeType.rect, { x:0, y:0, w:0.18, h:7.5, fill:{color:C.orange}, line:{color:C.orange} });
-    sl.addText('CAD MODEL — ONSHAPE', {
+    sl.addText('CAD MODEL â€” ONSHAPE', {
       x:0.4, y:0.2, w:12, h:0.45,
       fontSize:11, color:C.orange, bold:true, charSpacing:2, fontFace:'Calibri'
     });
     sl.addText('Page 5 of 5', { x:11.5, y:0.22, w:1.5, h:0.35, fontSize:11, color:C.muted, fontFace:'Calibri', align:'right' });
-    sl.addText(name + '  ·  ' + date, { x:0.4, y:0.65, w:12, h:0.3, fontSize:13, color:C.muted, fontFace:'Calibri' });
+    sl.addText(name + '  Â·  ' + date, { x:0.4, y:0.65, w:12, h:0.3, fontSize:13, color:C.muted, fontFace:'Calibri' });
 
     if (cadImageDataURL) {
       sl.addImage({ data: cadImageDataURL, x:0.4, y:1.1, w:8.5, h:5.6, sizing:{type:'contain', w:8.5, h:5.6} });
@@ -1452,13 +1629,13 @@ async function generateReport() {
 
     sl.addShape(pptx.ShapeType.rect, { x:9.1, y:3.5, w:3.8, h:1.6, fill:{color:'142030'}, line:{color:'1E3550', pt:1}, rectRadius:0.08 });
     sl.addText('GEOMETRY TYPE', { x:9.3, y:3.58, w:3.4, h:0.3, fontSize:10, color:C.orange, bold:true, charSpacing:1.5, fontFace:'Calibri' });
-    sl.addText(load('contact_type') || '—', { x:9.3, y:3.95, w:3.4, h:0.9, fontSize:16, color:C.white, bold:true, fontFace:'Cambria', wrap:true });
+    sl.addText(load('contact_type') || 'â€”', { x:9.3, y:3.95, w:3.4, h:0.9, fontSize:16, color:C.white, bold:true, fontFace:'Cambria', wrap:true });
 
     sl.addShape(pptx.ShapeType.rect, { x:9.1, y:5.3, w:3.8, h:1.5, fill:{color:'142030'}, line:{color:'1E3550', pt:1}, rectRadius:0.08 });
     sl.addText('ONSHAPE LINK', { x:9.3, y:5.38, w:3.4, h:0.3, fontSize:10, color:C.orange, bold:true, charSpacing:1.5, fontFace:'Calibri' });
     sl.addText(load('c_onshape_link') ? 'See document link in notes' : '(not provided)', { x:9.3, y:5.75, w:3.4, h:0.7, fontSize:12, color:'AABFCF', fontFace:'Calibri' });
 
-    // ── Slide 6: Reflection ─────────────────────────
+    // â”€â”€ Slide 6: Reflection â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     sl = pptx.addSlide();
     sl.background = { color: C.offwh };
     sl.addShape(pptx.ShapeType.rect, { x:0, y:0, w:0.18, h:7.5, fill:{color:C.orange}, line:{color:C.orange} });
@@ -1473,15 +1650,71 @@ async function generateReport() {
     sl.addText(load('s_reflection') || '(not answered)', { x:0.6, y:1.55, w:12.1, h:2.0, fontSize:15, color:C.text, fontFace:'Calibri', wrap:true });
 
     sl.addShape(pptx.ShapeType.rect, { x:0.4, y:3.9, w:12.5, h:2.0, fill:{color:C.white}, line:{color:'D0DCE8', pt:1.5}, rectRadius:0.08 });
-    sl.addText('IF I HAD MORE TIME…', { x:0.6, y:3.98, w:12, h:0.3, fontSize:10, color:C.steel, bold:true, charSpacing:1.5, fontFace:'Calibri' });
+    sl.addText('IF I HAD MORE TIMEâ€¦', { x:0.6, y:3.98, w:12, h:0.3, fontSize:10, color:C.steel, bold:true, charSpacing:1.5, fontFace:'Calibri' });
     sl.addText(load('s_next') || '(not answered)', { x:0.6, y:4.35, w:12.1, h:1.4, fontSize:15, color:C.text, fontFace:'Calibri', wrap:true });
 
     // Footer
     sl.addShape(pptx.ShapeType.rect, { x:0, y:6.8, w:13.33, h:0.7, fill:{color:C.navy}, line:{color:C.navy} });
-    sl.addText(`FEDS 201  ·  ${name}  ·  Design Challenge #1  ·  ${date}`, {
+    sl.addText(`FEDS 201  Â·  ${name}  Â·  Design Challenge #1  Â·  ${date}`, {
       x:0.4, y:6.87, w:12.5, h:0.35,
       fontSize:11, color:C.muted, fontFace:'Calibri'
     });
+
+    // â”€â”€ Badge Self-Assessment Slide â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    sl = pptx.addSlide();
+    sl.background = { color: C.navy };
+    sl.addShape(pptx.ShapeType.rect, { x:0, y:0, w:0.18, h:7.5, fill:{color:C.orange}, line:{color:C.orange} });
+    sl.addShape(pptx.ShapeType.rect, { x:0, y:0, w:13.33, h:1.0, fill:{color:'0A0F18'}, line:{color:'0A0F18'} });
+    sl.addText('FED BADGE SELF-ASSESSMENT', { x:0.4, y:0.1, w:10, h:0.45, fontSize:11, color:C.orange, bold:true, charSpacing:2, fontFace:'Calibri' });
+    sl.addText('Student: ' + name + '  Â·  ' + date, { x:0.4, y:0.58, w:10, h:0.3, fontSize:11, color:C.muted, fontFace:'Calibri' });
+    const badgeData = [
+      { title:'Problem Definition', level:'ROOKIE', color:'CC2229', self:load('b_prob_self'), score:load('b_prob_score') },
+      { title:'Requirements Engineering', level:'ROOKIE', color:'CC2229', self:load('b_req_self'), score:load('b_req_score') },
+      { title:'CAD Modeling', level:'ROOKIE', color:'1B4F72', self:load('b_cad_self'), score:load('b_cad_score') },
+    ];
+    badgeData.forEach((b, i) => {
+      const bx = 0.4 + i * 4.3;
+      const scoreColor = b.score==='Ready'?'1E7D4A':b.score==='Partial'?'D4691A':'C0392B';
+      sl.addShape(pptx.ShapeType.rect, { x:bx, y:1.1, w:4.1, h:5.8, fill:{color:'112236'}, line:{color:b.color, pt:2}, rectRadius:0.1 });
+      sl.addShape(pptx.ShapeType.rect, { x:bx, y:1.1, w:4.1, h:0.55, fill:{color:b.color}, line:{color:b.color} });
+      sl.addText(b.title, { x:bx+0.12, y:1.14, w:3.86, h:0.46, fontSize:13, color:C.white, bold:true, fontFace:'Cambria' });
+      sl.addShape(pptx.ShapeType.rect, { x:bx+0.12, y:1.78, w:0.9, h:0.26, fill:{color:b.color}, line:{color:b.color}, rectRadius:0.04 });
+      sl.addText(b.level, { x:bx+0.12, y:1.78, w:0.9, h:0.26, fontSize:8, color:C.white, bold:true, align:'center', fontFace:'Calibri' });
+      sl.addText('SELF-ASSESSMENT', { x:bx+0.12, y:2.18, w:3.8, h:0.28, fontSize:9, color:C.muted, bold:true, charSpacing:1, fontFace:'Calibri' });
+      sl.addText(b.self||'(not completed)', { x:bx+0.12, y:2.5, w:3.8, h:3.0, fontSize:11, color:'AABFCF', fontFace:'Calibri', wrap:true });
+      const scoreText = b.score==='Ready'?'âœ“ Ready for badge':b.score==='Partial'?'~ Partial':'âœ— Not yet ready';
+      sl.addShape(pptx.ShapeType.rect, { x:bx+0.12, y:5.6, w:3.8, h:0.55, fill:{color:'0A1520'}, line:{color:scoreColor, pt:1.5}, rectRadius:0.06 });
+      sl.addText('Student: ' + (scoreText||'Not answered'), { x:bx+0.12, y:5.68, w:3.8, h:0.38, fontSize:12, color:scoreColor, bold:true, align:'center', fontFace:'Calibri' });
+    });
+    sl.addShape(pptx.ShapeType.rect, { x:0.4, y:7.1, w:12.5, h:0.32, fill:{color:'0A0F18'}, line:{color:C.border} });
+    sl.addText('Questions for mentor: ' + (load('b_question')||'â€”'), { x:0.5, y:7.14, w:12.3, h:0.24, fontSize:10, color:C.muted, fontFace:'Calibri', italic:true });
+
+    // â”€â”€ Mentor Approval Slide â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    sl = pptx.addSlide();
+    sl.background = { color: '060E18' };
+    sl.addShape(pptx.ShapeType.rect, { x:0, y:0, w:0.18, h:7.5, fill:{color:C.steel}, line:{color:C.steel} });
+    sl.addShape(pptx.ShapeType.rect, { x:0, y:0, w:13.33, h:1.0, fill:{color:C.navy}, line:{color:C.navy} });
+    sl.addText('MENTOR REVIEW â€” FOR INSTRUCTOR USE ONLY', { x:0.4, y:0.1, w:12, h:0.45, fontSize:11, color:C.steel, bold:true, charSpacing:2, fontFace:'Calibri' });
+    sl.addText('Student: ' + name + '  Â·  Challenge 01 â€” Tennis Ball Desk Holder  Â·  ' + date, { x:0.4, y:0.58, w:12, h:0.3, fontSize:11, color:C.muted, fontFace:'Calibri' });
+    const approvalList = [
+      { title:'Problem Definition', level:'Rookie', color:'CC2229' },
+      { title:'Requirements Engineering', level:'Rookie', color:'CC2229' },
+      { title:'CAD Modeling', level:'Rookie', color:'1B4F72' },
+    ];
+    approvalList.forEach((b, i) => {
+      const ax = 0.4 + i * 4.3;
+      sl.addShape(pptx.ShapeType.rect, { x:ax, y:1.1, w:4.1, h:5.6, fill:{color:C.navy}, line:{color:C.border, pt:1.5}, rectRadius:0.1 });
+      sl.addShape(pptx.ShapeType.rect, { x:ax, y:1.1, w:4.1, h:0.55, fill:{color:b.color}, line:{color:b.color} });
+      sl.addText(b.title + ' Â· ' + b.level, { x:ax+0.12, y:1.14, w:3.86, h:0.46, fontSize:12, color:C.white, bold:true, fontFace:'Cambria' });
+      sl.addShape(pptx.ShapeType.rect, { x:ax+0.15, y:1.8, w:3.8, h:0.55, fill:{color:'0A1F0A'}, line:{color:'1E7D4A', pt:1.5}, rectRadius:0.06 });
+      sl.addText('â˜  APPROVED â€” Badge Awarded', { x:ax+0.25, y:1.88, w:3.6, h:0.38, fontSize:13, color:'5DDB8A', fontFace:'Calibri' });
+      sl.addShape(pptx.ShapeType.rect, { x:ax+0.15, y:2.5, w:3.8, h:0.55, fill:{color:'1F0A00'}, line:{color:'D4691A', pt:1.5}, rectRadius:0.06 });
+      sl.addText('â˜  NOT YET â€” See comments', { x:ax+0.25, y:2.58, w:3.6, h:0.38, fontSize:13, color:'FFB07A', fontFace:'Calibri' });
+      sl.addShape(pptx.ShapeType.rect, { x:ax+0.15, y:3.2, w:3.8, h:3.1, fill:{color:'0A1220'}, line:{color:C.border, pt:1}, rectRadius:0.06 });
+      sl.addText('Mentor comments:', { x:ax+0.25, y:3.3, w:3.6, h:0.3, fontSize:10, color:C.muted, fontFace:'Calibri' });
+    });
+    sl.addShape(pptx.ShapeType.rect, { x:0.4, y:6.82, w:12.5, h:0.58, fill:{color:C.steel}, line:{color:C.steel}, rectRadius:0.06 });
+    sl.addText('Issue PIN for Challenge 02 after all 3 badges approved:  PIN â†’ [ _____ ]', { x:0.5, y:6.9, w:12.3, h:0.38, fontSize:14, color:C.white, bold:true, fontFace:'Calibri' });
 
     // Save
     const safeName = (load('r_name') || 'Student').replace(/\s+/g,'_');
@@ -1492,13 +1725,13 @@ async function generateReport() {
     alert('Error generating report: ' + err.message);
   }
 
-  btn.textContent = '⬇ Generate Report (.pptx)';
+  btn.textContent = 'â¬‡ Generate Report (.pptx)';
   btn.disabled = false;
 }
 
-// ══════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 //  INIT
-// ══════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 document.addEventListener('DOMContentLoaded', () => {
   restoreAll();
   updateProgress();
