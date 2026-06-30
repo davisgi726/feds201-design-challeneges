@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FEDS 201 — Mechanical Design Training</title>
+<style>
+:root{
+  --navy:#0D1B2A; --steel:#1B4F72; --orange:#F4831F; --orange2:#D4691A;
+  --red:#CC2229; --gold:#C8A200; --green:#1E7D4A; --offwhite:#F0F4F8;
+  --muted:#7A8FA6; --border:#1E3A50; --text:#DDEAF5; --dim:#8BAFC8;
+  --t1:#CC2229; --t2:#1B4F72; --t3:#F4831F;
+  --live:#1E7D4A; --dev:#C8A200;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:Calibri,'Segoe UI',Arial,sans-serif;background:var(--navy);color:var(--text);min-height:100vh;}
+
+/* ── HEADER ── */
+.hdr{padding:24px 32px 18px;border-bottom:1px solid var(--border);}
+.hdr-top{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:10px;}
+.hdr h1{font-family:Cambria,serif;font-size:26px;color:#fff;line-height:1.2;}
+.hdr .sub{font-size:12px;color:var(--orange);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px;}
+.legend{display:flex;gap:20px;flex-wrap:wrap;margin-top:12px;}
+.leg-item{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--dim);}
+.leg-dot{width:12px;height:12px;border-radius:2px;flex-shrink:0;}
+
+/* ── TIER COLUMNS ── */
+.map-wrap{overflow-x:auto;padding:24px 32px 40px;}
+.map-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;min-width:900px;position:relative;}
+.tier-col{padding:0 14px;}
+.tier-head{text-align:center;padding:12px 0 20px;position:relative;}
+.tier-head h2{font-family:Cambria,serif;font-size:18px;font-weight:700;margin-bottom:4px;}
+.tier-head p{font-size:12px;color:var(--muted);}
+.tier-divider{position:absolute;top:0;right:0;bottom:0;width:1px;background:var(--border);}
+
+/* ── CHALLENGE CARDS ── */
+.ch-card{
+  border-radius:8px;padding:14px 16px;margin-bottom:16px;
+  border:2px solid var(--border);background:#112236;
+  cursor:pointer;transition:all .2s;position:relative;
+}
+.ch-card:hover{transform:translateY(-2px);border-color:var(--orange);}
+.ch-card.live{border-left:4px solid var(--live);}
+.ch-card.dev{border-left:4px solid var(--dev);opacity:0.75;}
+.ch-card.selected{border-color:var(--orange);background:#1A3050;}
+
+.ch-num{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px;}
+.ch-num .status-dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px;vertical-align:middle;}
+.ch-num .status-dot.live{background:var(--live);}
+.ch-num .status-dot.dev{background:var(--dev);}
+.ch-title{font-family:Cambria,serif;font-size:16px;color:#fff;margin-bottom:8px;line-height:1.3;}
+.ch-track{font-size:11px;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;}
+.ch-badges{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px;}
+.badge-pill{font-size:10px;padding:2px 8px;border-radius:10px;font-weight:700;white-space:nowrap;}
+.badge-pill.t1{background:rgba(204,34,41,.2);color:#FF8A8E;border:1px solid rgba(204,34,41,.4);}
+.badge-pill.t2{background:rgba(27,79,114,.3);color:#7AB8E0;border:1px solid rgba(27,79,114,.5);}
+.badge-pill.t3{background:rgba(244,131,31,.2);color:#FFB07A;border:1px solid rgba(244,131,31,.4);}
+.ch-level{font-size:11px;color:var(--dim);}
+.ch-gate{font-size:10px;color:var(--muted);margin-top:6px;padding-top:6px;border-top:1px solid var(--border);}
+.ch-ref{font-size:10px;color:#3A5566;margin-top:3px;font-style:italic;}
+
+/* ── DETAIL PANEL ── */
+.detail-panel{
+  background:#0A1520;border-top:1px solid var(--border);
+  padding:20px 32px;min-height:120px;
+  transition:all .3s;
+}
+.detail-inner{max-width:900px;}
+.detail-title{font-family:Cambria,serif;font-size:20px;color:var(--orange);margin-bottom:8px;}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-top:12px;}
+.detail-section h4{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:8px;}
+.detail-section p{font-size:13px;color:var(--dim);line-height:1.6;}
+.detail-badges{display:flex;flex-wrap:wrap;gap:6px;}
+.detail-badge{padding:4px 12px;border-radius:4px;font-size:12px;font-weight:700;}
+
+/* ── ARROW SVG OVERLAY ── */
+.map-svg-wrap{position:relative;}
+.arrow-svg{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:visible;}
+
+/* ── LOCKED CARD ── */
+.ch-card.locked{
+  opacity:0.4;cursor:not-allowed;pointer-events:none;
+  filter:grayscale(0.5);
+}
+.ch-card.locked:hover{transform:none;border-color:var(--border);}
+
+/* ── LAUNCH BUTTON ── */
+.launch-btn{
+  display:inline-block;margin-top:10px;padding:10px 22px;
+  background:var(--live);color:#fff;border-radius:6px;
+  font-family:Calibri,sans-serif;font-size:14px;font-weight:700;
+  text-decoration:none;cursor:pointer;border:none;
+  transition:background .2s;width:100%;text-align:center;
+}
+.launch-btn:hover{background:#165E38;}
+
+/* ── HERO STRIP ── */
+.hero-strip{
+  background:linear-gradient(135deg,#0A1520 0%,#112236 100%);
+  border-bottom:2px solid var(--orange);
+  padding:18px 32px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;
+}
+.hero-left{}
+.hero-team{font-size:11px;color:var(--orange);text-transform:uppercase;letter-spacing:2.5px;font-weight:700;margin-bottom:4px;}
+.hero-title{font-family:Cambria,serif;font-size:28px;color:#fff;line-height:1.2;}
+.hero-sub{font-size:13px;color:var(--dim);margin-top:4px;}
+.hero-stats{display:flex;gap:24px;}
+.stat{text-align:center;}
+.stat-num{font-family:Cambria,serif;font-size:26px;color:var(--orange);font-weight:700;line-height:1;}
+.stat-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:3px;}
+
+/* ── HOW IT WORKS ── */
+.how-strip{
+  display:flex;background:#0A1520;border-bottom:1px solid var(--border);
+  padding:0 32px;overflow-x:auto;
+}
+.how-step{
+  display:flex;align-items:center;gap:10px;
+  padding:14px 20px 14px 0;flex-shrink:0;
+}
+.how-step:not(:last-child)::after{content:'→';color:var(--border);font-size:16px;margin-left:20px;}
+.how-num{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--orange);color:var(--orange);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;}
+.how-text{font-size:12px;color:var(--dim);line-height:1.4;}
+.how-text strong{color:var(--text);display:block;}
+
+/* ── ACTIVE PULSE ── */
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(30,125,74,.6);}70%{box-shadow:0 0 0 8px rgba(30,125,74,0);}100%{box-shadow:0 0 0 0 rgba(30,125,74,0);}}
+.ch-card.live.active-now{animation:pulse 2.5s infinite;}
+
+/* ── LEVEL RIBBON ── */
+.level-ribbon{
+  position:absolute;top:10px;right:10px;
+  font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;
+  padding:2px 6px;border-radius:3px;
+}
+.level-ribbon.rookie{background:var(--red);color:#fff;}
+.level-ribbon.apprentice{background:var(--steel);color:#fff;}
+.level-ribbon.engineer{background:var(--orange);color:#fff;}
+.level-ribbon.principal{background:var(--gold);color:#fff;}
+.level-ribbon.multi{background:linear-gradient(90deg,var(--red) 50%,var(--steel) 50%);color:#fff;}
+
+/* ── TRACK COLOR BARS ── */
+.track-bar{width:100%;height:3px;border-radius:2px;margin-bottom:10px;}
+.track-design{background:var(--red);}
+.track-mechanism{background:var(--steel);}
+.track-manufacturing{background:var(--orange);}
+.track-drawing{background:#9B59B6;}
+.track-electrical{background:#F4E020;}
+.track-strategy{background:var(--green);}
+.track-integration{background:var(--gold);}
+
+/* ── TIER HEADERS ── */
+.t1-head{color:var(--red);}
+.t2-head{color:var(--steel);}
+.t3-head{color:var(--orange);}
+
+/* ── GATE ARROWS BETWEEN TIERS ── */
+.inter-arrow{
+  display:flex;align-items:center;justify-content:center;
+  height:32px;color:var(--muted);font-size:18px;margin:4px 0;
+  position:relative;
+}
+.inter-arrow::before{
+  content:'';position:absolute;left:50%;top:50%;
+  width:2px;height:100%;background:var(--border);
+  transform:translateX(-50%) translateY(-50%);
+}
+
+/* print button */
+.btn-print{
+  background:var(--orange);color:#fff;border:none;border-radius:6px;
+  padding:8px 20px;font-family:Calibri,sans-serif;font-size:13px;font-weight:700;
+  cursor:pointer;transition:background .2s;
+}
+.btn-print:hover{background:var(--orange2);}
+
+@media print{
+  body{background:#fff;color:#000;}
+  .detail-panel{display:none;}
+  .btn-print{display:none;}
+  .ch-card{background:#f8f8f8;border-color:#ccc;}
+  .ch-title{color:#000;}
+}
+</style>
+</head>
+<body>
+
+<div class="hero-strip">
+  <div class="hero-left">
+    <div class="hero-team">FEDS 201 · Falcon Engineering &amp; Design Solutions · Rochester Hills, MI</div>
+    <div class="hero-title">Mechanical Design Training</div>
+    <div class="hero-sub">Complete challenges in order · Earn FED Badges · Unlock the next level</div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">1</div><div class="stat-label">Active Now</div></div>
+    <div class="stat"><div class="stat-num">13</div><div class="stat-label">Total Planned</div></div>
+    <div class="stat"><div class="stat-num">13</div><div class="stat-label">Skill Domains</div></div>
+    <div class="stat"><div class="stat-num">PPTX</div><div class="stat-label">Report Output</div></div>
+  </div>
+</div>
+
+<div class="how-strip">
+  <div class="how-step"><div class="how-num">1</div><div class="how-text"><strong>Read the Brief</strong>Technical concepts &amp; formulas</div></div>
+  <div class="how-step"><div class="how-num">2</div><div class="how-text"><strong>Define Requirements</strong>Measure, constrain, specify</div></div>
+  <div class="how-step"><div class="how-num">3</div><div class="how-text"><strong>Develop Concept</strong>Ideate, plan, calculate</div></div>
+  <div class="how-step"><div class="how-num">4</div><div class="how-text"><strong>Model in Onshape</strong>CAD with guided steps</div></div>
+  <div class="how-step"><div class="how-num">5</div><div class="how-text"><strong>Self-Assess Badges</strong>Honest reflection on skills</div></div>
+  <div class="how-step"><div class="how-num">6</div><div class="how-text"><strong>Generate Report</strong>Download PPTX, submit to mentor</div></div>
+</div>
+
+<div class="hdr">
+  <div class="hdr-top">
+    <div>
+      <div class="sub">Challenge Map — Click any card to learn more · Click Launch to begin</div>
+      <h1>Design Challenge Curriculum</h1>
+    </div>
+    <button class="btn-print" onclick="window.print()">🖨 Print Map</button>
+  </div>
+  <div class="legend">
+    <div class="leg-item"><div class="leg-dot" style="background:var(--live)"></div>Active — open now</div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--dev)"></div>Coming soon</div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--border)"></div>Locked — complete previous challenge first</div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--red)"></div>Tier 1: Foundation</div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--steel)"></div>Tier 2: Design &amp; Analysis</div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--orange)"></div>Tier 3: Engineer Level</div>
+  </div>
+</div>
+
+<div class="map-wrap">
+<div class="map-grid">
+
+<!-- ─── TIER 1 ─── -->
+<div class="tier-col">
+  <div class="tier-head">
+    <h2 class="t1-head">Tier 1 — Foundation</h2>
+    <p>Open to all · Rookie & Apprentice badges</p>
+    <div class="tier-divider"></div>
+  </div>
+
+  <!-- C01 -->
+  <div class="ch-card live active-now" id="card-C01" onclick="select('C01')">
+    <div class="track-bar track-design"></div>
+    <div class="ch-num"><span class="status-dot live"></span>Challenge 01 · ACTIVE NOW</div>
+    <div class="level-ribbon rookie">Rookie</div>
+    <div class="ch-title">Tennis Ball<br>Desk Holder</div>
+    <div class="ch-track">🔴 Design Process Track</div>
+    <div class="ch-badges">
+      <span class="badge-pill t1">Problem Definition</span>
+      <span class="badge-pill t1">Requirements Eng.</span>
+      <span class="badge-pill t2">CAD Modeling</span>
+    </div>
+    <div class="ch-gate">🔓 Open to all — no prerequisites</div>
+    <a class="launch-btn" id="ch01-launch" href="https://codepen.io/Gary-Davis/embed/019f1655-a8d7-7877-a395-79bec2f2f15a?default-tab=result&editable=false" target="_blank" onclick="event.stopPropagation()">▶ Launch Challenge 01</a>
+  </div>
+
+  <!-- C02 -->
+  <div class="ch-card locked" id="card-C02" onclick="select('C02')">
+    <div class="track-bar track-design"></div>
+    <div class="ch-num"><span class="status-dot dev"></span>Challenge 02 · 🔒 Locked</div>
+    <div class="level-ribbon rookie">Rookie</div>
+    <div class="ch-title">The Cat Toy<br>Problem</div>
+    <div class="ch-track">🔴 Design Process Track</div>
+    <div class="ch-badges">
+      <span class="badge-pill t1">Design Process</span>
+      <span class="badge-pill t1">Decision Making</span>
+      <span class="badge-pill t3">Prototyping & Testing</span>
+    </div>
+    <div class="ch-gate">🔒 Requires: Challenge 01 PIN</div>
+  </div>
+
+  <!-- C03 -->
+  <div class="ch-card locked" id="card-C03" onclick="select('C03')">
+    <div class="track-bar track-mechanism"></div>
+    <div class="ch-num"><span class="status-dot dev"></span>Challenge 03 · 🔒 Locked</div>
+    <div class="level-ribbon multi">Rookie→App.</div>
+    <div class="ch-title">Gear Ratio<br>Lift System</div>
+    <div class="ch-track">🔵 Mechanism Track</div>
+    <div class="ch-badges">
+      <span class="badge-pill t2">Mechanism Analysis</span>
+      <span class="badge-pill t2">CAD Modeling</span>
+    </div>
+    <div class="ch-gate">🔒 Requires: Challenge 01 PIN</div>
+  </div>
+
+  <!-- C04 -->
+  <div class="ch-card locked" id="card-C04" onclick="select('C04')">
+    <div class="track-bar track-manufacturing"></div>
+    <div class="ch-num"><span class="status-dot dev"></span>Challenge 04 · 🔒 Locked</div>
+    <div class="level-ribbon apprentice">Apprentice</div>
+    <div class="ch-title">Design for<br>3D Printing</div>
+    <div class="ch-track">🟠 Manufacturing Track</div>
+    <div class="ch-badges">
+      <span class="badge-pill t3">Design for 3D Printing</span>
+      <span class="badge-pill t2">CAD Modeling</span>
+    </div>
+    <div class="ch-gate">🔒 Requires: Challenge 02 PIN</div>
+  </div>
+</div>
+
+<!-- ─── TIER 2 ─── -->
+<div class="tier-col">
+  <div class="tier-head">
+    <h2 class="t2-head">Tier 2 — Design & Analysis</h2>
+    <p>Requires Tier 1 completion · Apprentice badges</p>
+    <div class="tier-divider"></div>
+  </div>
+
+  <!-- C05 -->
+  <div class="ch-card dev" id="card-C05" onclick="select('C05')">
+    <div class="track-bar" style="background:#9B59B6;"></div>
+    <div class="ch-num"><span class="status-dot dev"></span>Challenge 05 *</div>
+    <div class="level-ribbon multi">Rookie→App.</div>
+    <div class="ch-title">Technical<br>Drawing</div>
+    <div class="ch-track">🟣 Drawing Track</div>
+    <div class="ch-badges">
+      <span class="badge-pill t1">Technical Drawing</span>
+      <span class="badge-pill t1">Requirements Eng.</span>
+    </div>
+    <div class="ch-gate">🔒 Requires: Challenge 01 PIN</div>
+    <div class="ch-ref">Ref: FIRST WBL Toolkit · LTU EME 2012</div>
+  </div>
+
+  <!-- C06 -->
+  <div class="ch-card dev" id="card-C06" onclick="select('C06')">
+    <div class="track-bar track-mechanism"></div>
+    <div class="ch-num"><span class="status-dot dev"></span>Challenge 06 *</div>
+    <div class="level-ribbon apprentice">Apprentice</div>
+    <div class="ch-title">Swerve<br>Drivetrain</div>
+    <div class="ch-track">🔵 Mechanism Track</div>
+    <div class="ch-badges">
+      <span class="badge-pill t2">Structural Design</span>
+      <span class="badge-pill t2">Mechanism Analysis</span>
+      <span class="badge-pill t2">CAD Modeling</span>
+    </div>
+    <div class="ch-gate">🔒 Requires: Challenge 03 PIN</div>
+    <div class="ch-ref">Ref: FRCDesign.org Stage 1D</div>
+  </div>
+
+  <!-- C07 -->
+  <div class="ch-card dev" id="card-C07" onclick="select('C07')">
+    <div class="track-bar track-electrical"></div>
+    <div class="ch-num"><span class="status-dot dev"></span>Challenge 07 *</div>
+    <div class="level-ribbon multi">Rookie→App.</div>
+    <div class="ch-title">Robot Wiring<br>& Controls</div>
+    <div class="ch-track">⚡ Electrical Track</div>
+    <div class="ch-badges">
+      <span class="badge-pill t2">Electrical & Controls</span>
+    </div>
+    <div class="ch-gate">🔒 Requires: Challenge 02 PIN</div>
+    <div class="ch-ref">Ref: FIRST Tech Resources · FRC Wiring Guide</div>
+  </div>
+
+  <!-- C08 -->
+  <div class="ch-card dev" id="card-C08" onclick="select('C08')">
+    <div class="track-bar track-electrical"></div>
+    <div class="ch-num"><span class="status-dot dev"></span>Challenge 08 *</div>
+    <div class="level-ribbon apprentice">Apprentice</div>
+    <div class="ch-title">Pneumatics<br>System</div>
+    <div class="ch-track">⚡ Electrical Track</div>
+    <div class="ch-badges">
+      <span class="badge-pill t2">Pneumatics Systems</span>
+    </div>
+    <div class="ch-gate">🔒 Requires: Challenge 07 PIN</div>
+    <div class="ch-ref">Ref: FIRST Pneumatics Manual</div>
+  </div>
+
+  <!-- C09 -->
+  <div class="ch-card dev" id="card-C09" onclick="select('C09')">
+    <div class="track-bar track-manufacturing"></div>
+    <div class="ch-num"><span class="status-dot dev"></span>Challenge 09 *</div>
+    <div class="level-ribbon apprentice">Apprentice</div>
+    <div class="ch-title">Design for<br>Manufacturing</div>
+    <div class="ch-track">🟠 Manufacturing Track</div>
+    <div class="ch-badges">
+      <span class="badge-pill t3">Design for Manufacturing</span>
+      <span class="badge-pill t1">Technical Drawing</span>
+    </div>
+    <div class="ch-gate">🔒 Requires: Challenge 05 PIN</div>
+    <div class="ch-ref">Ref: 971 Spartan Robotics · Fabworks DFM</div>
+  </div>
+</div>
+
+<!-- ─── TIER 3 ─── -->
+<div class="tier-col">
+  <div class="tier-head">
+    <h2 class="t3-head">Tier 3 — Engineer Level</h2>
+    <p>Requires Tier 2 completion · Engineer & Principal badges</p>
+  </div>
+
+  <!-- C10 -->
+  <div class="ch-card dev" id="card-C10" onclick="select('C10')">
+    <div class="track-bar track-mechanism"></div>
+    <div class="ch-num"><span class="status-dot dev"></span>Challenge 10 *</div>
+    <div class="level-ribbon engineer">Engineer</div>
+    <div class="ch-title">Roller Intake<br>Design</div>
+    <div class="ch-track">🔵 Mechanism Track</div>
+    <div class="ch-badges">
+      <span class="badge-pill t2">Mechanism Analysis</span>
+      <span class="badge-pill t2">CAD Modeling</span>
+      <span class="badge-pill t3">Prototyping & Testing</span>
+    </div>
+    <div class="ch-gate">🔒 Requires: Challenge 06 PIN</div>
+    <div class="ch-ref">Ref: FRCDesign.org Stage 2 · Project Bucephalus</div>
+  </div>
+
+  <!-- C11 -->
+  <div class="ch-card dev" id="card-C11" onclick="select('C11')">
+    <div class="track-bar track-mechanism"></div>
+    <div class="ch-num"><span class="status-dot dev"></span>Challenge 11 *</div>
+    <div class="level-ribbon engineer">Engineer</div>
+    <div class="ch-title">Elevator<br>System</div>
+    <div class="ch-track">🔵 Mechanism Track</div>
+    <div class="ch-badges">
+      <span class="badge-pill t2">Structural Design</span>
+      <span class="badge-pill t2">Mechanism Analysis</span>
+      <span class="badge-pill t2">CAD Modeling</span>
+    </div>
+    <div class="ch-gate">🔒 Requires: Challenge 10 PIN</div>
+    <div class="ch-ref">Ref: FRCDesign.org Stage 2 · YETI Wiki</div>
+  </div>
+
+  <!-- C12 -->
+  <div class="ch-card dev" id="card-C12" onclick="select('C12')">
+    <div class="track-bar track-strategy"></div>
+    <div class="ch-num"><span class="status-dot dev"></span>Challenge 12 *</div>
+    <div class="level-ribbon engineer">Engineer</div>
+    <div class="ch-title">Game Manual<br>Analysis</div>
+    <div class="ch-track">🟢 Strategy Track</div>
+    <div class="ch-badges">
+      <span class="badge-pill t1">Design Process</span>
+      <span class="badge-pill t1">Requirements Eng.</span>
+    </div>
+    <div class="ch-gate">🔒 Requires: Challenge 02 PIN</div>
+    <div class="ch-ref">Ref: Citrus Circuits Strategy · Karthik EFS</div>
+  </div>
+
+  <!-- C13 -->
+  <div class="ch-card dev" id="card-C13" onclick="select('C13')">
+    <div class="track-bar track-integration"></div>
+    <div class="ch-num"><span class="status-dot dev"></span>Challenge 13 *</div>
+    <div class="level-ribbon" style="background:var(--gold);color:#fff;">Eng.→Principal</div>
+    <div class="ch-title">Full Subsystem<br>Design Review</div>
+    <div class="ch-track">⭐ Integration Track</div>
+    <div class="ch-badges">
+      <span class="badge-pill t2">All Tier 2 Domains</span>
+    </div>
+    <div class="ch-gate">🔒 Requires: Challenges 11 + 12 PINs</div>
+    <div class="ch-ref">Ref: Team 254 · Citrus Circuits Design Review</div>
+  </div>
+</div>
+
+</div><!-- /map-grid -->
+</div><!-- /map-wrap -->
+
+<!-- Detail panel -->
+<div class="detail-panel" id="detailPanel">
+  <div class="detail-inner" id="detailInner">
+    <p style="color:var(--muted);font-size:13px;">Click any challenge card above to see details, badge requirements, and references.</p>
+  </div>
+</div>
+
+<script>
+const CHALLENGES = {
+  C01:{title:"Challenge 01 — Tennis Ball Desk Holder",tier:1,status:"live",
+    desc:"Students design a holder to keep a tennis ball from rolling off a desk. First exposure to the full design process — problem definition, requirements capture, contact geometry, stability analysis, and CAD assembly in Onshape.",
+    badges:["Problem Definition (Rookie)","Requirements Engineering (Rookie)","CAD Modeling (Rookie)"],
+    badgeColors:["t1","t1","t2"],
+    gate:"None — open to all students",
+    codepen:"https://codepen.io/Gary-Davis/embed/019f1655-a8d7-7877-a395-79bec2f2f15a?default-tab=result&editable=false"},
+  C02:{title:"Challenge 02 — The Cat Toy Problem",tier:1,status:"live",
+    desc:"A real client problem — toys disappearing under appliances. Students conduct a client interview, define root cause vs. stated problem, write SMART requirements, brainstorm 4+ concepts with scoring rubrics, build a weighted decision matrix from their requirements, and prototype in Onshape.",
+    badges:["Design Process (Rookie)","Decision Making (Rookie)","Prototyping & Testing (Rookie)"],
+    badgeColors:["t1","t1","t3"],
+    gate:"Requires: Challenge 01 PIN from mentor",
+    ref:"FEDS 201 Original · RUSH Toolkit Ch.7 · FIRST WBL Toolkit",
+    codepen:"https://codepen.io"},
+  C03:{title:"Challenge 03 — Gear Ratio Lift System",tier:1,status:"live",
+    desc:"Kraken X44 @ 80% voltage must lift 5 lbs to 36 inches in 2 seconds using WCP 20DP spur gears. Students calculate the required ratio, define gear pairs, compute center distances, build a two-stage gearbox assembly in Onshape using FRCDesignLib, and optionally animate with Gear Relation mates.",
+    badges:["Mechanism Analysis (Rookie→Apprentice)","CAD Modeling (Apprentice)"],
+    badgeColors:["t2","t2"],
+    gate:"Requires: Challenge 01 PIN from mentor",
+    ref:"FRCDesign.org Stage 1B · WCP Docs · ReCalc",
+    codepen:"https://codepen.io"},
+  C04:{title:"Challenge 04 — Design for 3D Printing",tier:1,status:"live",
+    desc:"Students design a Minecraft-style multi-part character with 4+ separate printable parts, 2+ joint types (straight slide, dovetail, pin & socket), and a rotating joint. Each part must print without supports. Based on Gary's Chicken Zombie as the worked example. Includes pixel grid scaling and filament cost calculation.",
+    badges:["Design for 3D Printing (Apprentice)","CAD Modeling (Apprentice)"],
+    badgeColors:["t3","t2"],
+    gate:"Requires: Challenge 02 PIN from mentor",
+    ref:"FEDS 201 Original · Minecraft Wiki · FDM best practices",
+    codepen:"https://codepen.io"},
+  C05:{title:"Challenge 05 * — Technical Drawing",tier:2,status:"dev",
+    desc:"Students create and read engineering drawings — title blocks, multiview projection, section views, GD&T basics, and dimension tolerancing. Practical exercise: create a drawing of one of their Challenge 01 or 03 parts in Onshape Drawings and dimension it to manufacturing standard.",
+    badges:["Technical Drawing (Rookie→Apprentice)","Requirements Engineering (Apprentice)"],
+    badgeColors:["t1","t1"],
+    gate:"Requires: Challenge 01 PIN",
+    ref:"FIRST WBL Toolkit · LTU EME 2012 Mechanical Eng. Graphics · Onshape Drawings tutorials",
+    codepen:""},
+  C06:{title:"Challenge 06 * — Swerve Drivetrain",tier:2,status:"dev",
+    desc:"Students design and CAD a swerve drive module layout using top-down design methodology in Onshape — layout sketches first, then detail parts. Covers frame rails, belly pan, module placement, CoG analysis, and weight budget. Uses FRCDesignLib COTS components.",
+    badges:["Structural Design (Apprentice)","Mechanism Analysis (Apprentice)","CAD Modeling (Apprentice)"],
+    badgeColors:["t2","t2","t2"],
+    gate:"Requires: Challenge 03 PIN",
+    ref:"FRCDesign.org Stage 1D · Citrus Circuits top-down design · 6328 Mechanical Advantage",
+    codepen:""},
+  C07:{title:"Challenge 07 * — Robot Wiring & Controls",tier:2,status:"dev",
+    desc:"Students wire a full FRC control system — roboRIO, PDH, motor controllers, CAN bus, radio, pneumatics hub, and sensors. Includes wire routing, labeling, and cable management. Test: diagnose a deliberate wiring error.",
+    badges:["Electrical & Controls (Rookie→Apprentice)"],
+    badgeColors:["t2"],
+    gate:"Requires: Challenge 02 PIN",
+    ref:"FIRST Tech Resources · FRC Wiring Guide · REV Robotics docs · CTR Electronics docs",
+    codepen:""},
+  C08:{title:"Challenge 08 * — Pneumatics System",tier:2,status:"dev",
+    desc:"Students design and assemble an FRC pneumatics system — compressor, storage tanks, regulators, solenoids, and cylinders. Calculate pressure, force output, and cycle time. Wire the pneumatics hub and write a basic solenoid control test.",
+    badges:["Pneumatics Systems (Apprentice)"],
+    badgeColors:["t2"],
+    gate:"Requires: Challenge 07 PIN",
+    ref:"FIRST Pneumatics Manual · REV Pneumatic Hub docs",
+    codepen:""},
+  C09:{title:"Challenge 09 * — Design for Manufacturing",tier:2,status:"dev",
+    desc:"Students take a concept from Challenge 03 or 06 and redesign it for CNC machining or waterjet cutting — correct material selection, fastener patterns, clearance holes, tapping specs, and manufacturing notes on the drawing. DFM review with mentor.",
+    badges:["Design for Manufacturing (Apprentice)","Technical Drawing (Apprentice)"],
+    badgeColors:["t3","t1"],
+    gate:"Requires: Challenge 05 PIN",
+    ref:"971 Spartan Robotics: Composites & Manufacturing · Fabworks DFM guide · NASA RAP Design Guide",
+    codepen:""},
+  C10:{title:"Challenge 10 * — Roller Intake Design",tier:3,status:"dev",
+    desc:"Students design a slapdown or 4-bar roller intake for a current/recent FRC game piece. Requirements derived from the game manual. Includes roller sizing, compression calculation, power transmission selection, and packaging relative to a provided drivetrain CAD.",
+    badges:["Mechanism Analysis (Engineer)","CAD Modeling (Engineer)","Prototyping & Testing (Engineer)"],
+    badgeColors:["t2","t2","t3"],
+    gate:"Requires: Challenge 06 PIN",
+    ref:"FRCDesign.org Stage 2 Design Challenges · Project Bucephalus Intake Examples · 1678 Shooter to Intake",
+    codepen:""},
+  C11:{title:"Challenge 11 * — Elevator System",tier:3,status:"dev",
+    desc:"Students design a 2-stage cascade or continuous elevator using Onshape top-down design. Covers rigging choice (belt, chain, Dyneema), bearing block selection, motor/gearbox sizing with ReCalc, and carriage design. Integration with a provided intake end effector.",
+    badges:["Structural Design (Engineer)","Mechanism Analysis (Engineer)","CAD Modeling (Engineer)"],
+    badgeColors:["t2","t2","t2"],
+    gate:"Requires: Challenge 10 PIN",
+    ref:"FRCDesign.org Stage 2 Elevator · YETI Wiki Elevator Guide · WCP GreyT Elevator",
+    codepen:""},
+  C12:{title:"Challenge 12 * — Game Manual Analysis",tier:3,status:"dev",
+    desc:"Students read a current FRC game manual, extract all robot requirements, score them by priority, and write a robot requirements document using SMART format. Define 3 robot concepts and evaluate them with a decision matrix. Output: a pre-season design brief.",
+    badges:["Design Process (Engineer)","Requirements Engineering (Engineer)"],
+    badgeColors:["t1","t1"],
+    gate:"Requires: Challenge 02 PIN",
+    ref:"Citrus Circuits Strategic Design Workshop · Karthik Effective FIRST Strategies · 254 Technical Binder",
+    codepen:""},
+  C13:{title:"Challenge 13 * — Full Subsystem Design Review",tier:3,status:"dev",
+    desc:"Students present a complete subsystem design (intake, elevator, or manipulator) in a formal design review. Required artifacts: requirements doc, decision matrix, CAD assembly, drawing package, weight budget, and test plan. Reviewed by mentor panel — gate to Principal Engineer level.",
+    badges:["All Tier 2 Domains (Engineer→Principal Engineer)"],
+    badgeColors:["t2"],
+    gate:"Requires: Challenges 11 + 12 PINs",
+    ref:"Team 254 Design Review process · Citrus Circuits build season review format · RUSH Ch.7 Weekly Design Reviews",
+    codepen:""},
+};
+
+let selected = null;
+
+function select(id){
+  if(selected) document.getElementById('card-'+selected)?.classList.remove('selected');
+  selected = id;
+  document.getElementById('card-'+id)?.classList.add('selected');
+  const c = CHALLENGES[id];
+  const tierColor = c.tier===1?'#CC2229':c.tier===2?'#1B4F72':'#F4831F';
+  const statusBadge = c.status==='live'
+    ? '<span style="background:#1E7D4A;color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:8px;">LIVE</span>'
+    : '<span style="background:#C8A200;color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:8px;">IN DEVELOPMENT *</span>';
+
+  const badgeHTML = c.badges.map((b,i)=>`<span class="detail-badge ${c.badgeColors[i]}" style="background:${
+    c.badgeColors[i]==='t1'?'rgba(204,34,41,.25)':c.badgeColors[i]==='t2'?'rgba(27,79,114,.35)':'rgba(244,131,31,.25)'
+  };color:${c.badgeColors[i]==='t1'?'#FF8A8E':c.badgeColors[i]==='t2'?'#7AB8E0':'#FFB07A'};border:1px solid ${
+    c.badgeColors[i]==='t1'?'rgba(204,34,41,.5)':c.badgeColors[i]==='t2'?'rgba(27,79,114,.6)':'rgba(244,131,31,.4)'
+  };">${b}</span>`).join('');
+
+  const launchHTML = (c.status==='live' && c.codepen && c.codepen!=='https://codepen.io')
+    ? `<a href="${c.codepen}" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:#1E7D4A;color:#fff;padding:10px 22px;border-radius:6px;font-family:Calibri,sans-serif;font-size:14px;font-weight:700;text-decoration:none;margin-top:14px;">▶ Launch This Challenge</a>`
+    : '';
+
+  document.getElementById('detailInner').innerHTML = `
+    <div class="detail-title">${c.title} ${statusBadge}</div>
+    <p style="font-size:13px;color:var(--dim);line-height:1.7;margin-bottom:14px;">${c.desc}</p>
+    <div class="detail-grid">
+      <div class="detail-section">
+        <h4>🏅 FED Badges Available</h4>
+        <div class="detail-badges">${badgeHTML}</div>
+      </div>
+      <div class="detail-section">
+        <h4>🔒 Gate Requirement</h4>
+        <p>${c.gate}</p>
+      </div>
+      <div class="detail-section">
+        <h4>📚 References & Sources</h4>
+        <p style="font-size:12px;">${c.ref}</p>
+      </div>
+    </div>
+    ${launchHTML}
+  `;
+}
+</script>
+</body>
+</html>
