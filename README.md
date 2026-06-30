@@ -1,2 +1,2 @@
-# feds201-design-challeneges
+# feds201-design-challenges
 Design Challenges for FEDS robotics students
